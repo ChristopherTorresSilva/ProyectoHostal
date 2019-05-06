@@ -4,7 +4,7 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
@@ -12,7 +12,7 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -51,25 +51,30 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                         <li><a runat="server" href="~/Contact">Contacto</a></li>
-                         <% if(Session["Username"] != null) { %>
-                         <li><a runat="server" href="~/ReservaHabitacion">Reservar Habitación</a></li>
+                        <% if (Session["Username"] != null)
+                            { %>
+                        <li><a runat="server" href="~/RegistrarEmpresa">Registrar Empresa</a></li>
+                        <li><a runat="server" href="~/RegistrarEmpleado">Registrar Empleado</a></li>
+                        <li><a runat="server" href="~/RegistrarProveedor">Registrar Proveedor</a></li>
                         <% } %>
                     </ul>
-                    <% if(Session["Username"] == null) { %>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
-                            </ul>
+                    <% if (Session["Username"] == null)
+                        { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
+                    </ul>
                     <% } %>
-                    <% if(Session["Username"] != null) { %>
-                            <ul class="nav navbar-nav navbar-right">
-                                <asp:Label runat="server" ID="lblUSerDetails"></asp:Label>
-                                <li><a runat="server" href="~/Account/Logout">Cerrar Sesion</a></li>
-                            </ul>
+                    <% if (Session["Username"] != null)
+                        { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <asp:Label runat="server" ID="lblUSerDetails"></asp:Label>
+                        <li><a runat="server" href="~/Account/Logout">Cerrar Sesion</a></li>
+                    </ul>
                     <% } %>
-                    
                 </div>
             </div>
         </div>
