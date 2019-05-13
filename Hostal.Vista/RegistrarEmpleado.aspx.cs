@@ -6,10 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Oracle.DataAccess.Client;
 using System.Data;
+using Hostal.Negocio;
 
 namespace Hostal.Vista
 {
-    public partial class RegistrarTrabajador : System.Web.UI.Page
+    public partial class RegistrarEmpleado : System.Web.UI.Page
     {
         OracleConnection conexion = new OracleConnection("DATA SOURCE = XE ; PASSWORD = 123 ; USER ID = hostal");
         protected void Page_Load(object sender, EventArgs e)
@@ -54,29 +55,39 @@ namespace Hostal.Vista
 
         protected void btnCrear_Click(object sender, EventArgs e)
         {
+            
+            int perfil = int.Parse(dropPerfil.SelectedValue);
+            int cargo = int.Parse(dropCargo.SelectedValue);
             try
             {
-                conexion.Open();
-                OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPLEADO", conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("userN", OracleDbType.Varchar2).Value = txtUsuario.Text;
-                comando.Parameters.Add("perfil", OracleDbType.Int32).Value = dropPerfil.SelectedValue;
-                comando.Parameters.Add("rut", OracleDbType.Varchar2).Value = txtRut.Text;
-                comando.Parameters.Add("nom", OracleDbType.Varchar2).Value = txtNombre.Text;
-                comando.Parameters.Add("ape", OracleDbType.Varchar2).Value = txtApellido.Text;
-                comando.Parameters.Add("cargo", OracleDbType.Int32).Value = dropCargo.SelectedValue;
+
                 
-                
-                //System.Diagnostics.Debug.WriteLine(drop.SelectedValue);
-                comando.ExecuteNonQuery();
-                conexion.Close();
-                Response.Redirect("~/RegistrarEmpleado.aspx");
+                EMPLEADO empleado = new EMPLEADO();
+                if (empleado.CreateEmpleados(txtUsuario.Text, perfil, txtRut.Text, txtNombre.Text, txtApellido.Text, cargo))
+                {
+
+
+                    lblErrorMsg.Text = "Se ha creado con éxito el usuario. ";
+                   
+
+                    
+                }
+                else
+                {
+                    
+                    lblErrorMsg.Text = "No se ha podido crear el usuario.";
+                    
+
+                }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                lblErrorMsg.Text = "Error al crear el usuario";
+                lblErrorMsg.Text = "Error: " + ex.Message.ToString();
+                
+
             }
-            
+           
         }
 
         public void Clear()

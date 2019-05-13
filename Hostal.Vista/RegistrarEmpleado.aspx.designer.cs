@@ -10,7 +10,7 @@
 namespace Hostal.Vista {
     
     
-    public partial class RegistrarTrabajador {
+    public partial class RegistrarEmpleado {
         
         /// <summary>
         /// Control dropPerfil.

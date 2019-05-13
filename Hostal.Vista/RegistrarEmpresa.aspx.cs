@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Oracle.DataAccess.Client;
 using System.Data;
+using Hostal.Negocio;
 
 namespace Hostal.Vista
 {
@@ -30,18 +31,38 @@ namespace Hostal.Vista
         {
             try
             {
-                conexion.Open();
-                OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPRESA", conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("nom", OracleDbType.Varchar2).Value = txtNombre.Text;
-                comando.Parameters.Add("perfil", OracleDbType.Int32).Value = 2;
-                comando.Parameters.Add("rut", OracleDbType.Varchar2).Value = txtRut.Text;
-                comando.Parameters.Add("emp", OracleDbType.Varchar2).Value = txtEmpresa.Text;
-                comando.Parameters.Add("correo", OracleDbType.Varchar2).Value = txtCorreo.Text;
-                //System.Diagnostics.Debug.WriteLine(drop.SelectedValue);
-                comando.ExecuteNonQuery();
-                conexion.Close();
-                Response.Redirect("~/RegistrarEmpresa.aspx");
+
+                int perfil = 2;
+                try
+                {
+
+
+                    EMPRESA empresa = new EMPRESA();
+                    if (empresa.CreateEmpresa(txtNombre.Text, perfil,txtRut.Text,txtEmpresa.Text,txtCorreo.Text))
+                    {
+
+
+                        lblErrorMsg.Text = "Se ha creado con éxito el usuario. ";
+                        
+
+
+                    }
+                    else
+                    {
+
+                        lblErrorMsg.Text = "No se ha podido crear el usuario.";
+                        
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    lblErrorMsg.Text = "Error: " + ex.Message.ToString();
+                    
+                }
+
+                
             }
             catch (Exception)
             {

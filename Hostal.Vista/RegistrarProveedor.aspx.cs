@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Oracle.DataAccess.Client;
 using System.Data;
+using Hostal.Negocio;
 
 namespace Hostal.Vista
 {
@@ -45,22 +46,40 @@ namespace Hostal.Vista
         {
             try
             {
-                conexion.Open();
-                OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_PROVEEDOR", conexion);
-                comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.Add("userN", OracleDbType.Varchar2).Value = txtUsuario.Text;
-                comando.Parameters.Add("perfil", OracleDbType.Int32).Value = 3;
-                comando.Parameters.Add("rut", OracleDbType.Varchar2).Value = txtRut.Text;
-                comando.Parameters.Add("nom", OracleDbType.Varchar2).Value = txtProveedor.Text;
-                comando.Parameters.Add("tel", OracleDbType.Varchar2).Value = txtTel.Text;
-                comando.Parameters.Add("correo", OracleDbType.Varchar2).Value = txtCorreo.Text;
-                comando.Parameters.Add("rubro", OracleDbType.Int32).Value = dropRubro.SelectedValue;
+
+                int perfil = 3;
+                int rubro = int.Parse(dropRubro.SelectedValue);
+                try
+                {
 
 
-                //System.Diagnostics.Debug.WriteLine(drop.SelectedValue);
-                comando.ExecuteNonQuery();
-                conexion.Close();
-                Response.Redirect("~/RegistrarProveedor.aspx");
+                    PROVEEDOR empresa = new PROVEEDOR();
+                    if (empresa.CreateProveedor(txtUsuario.Text, perfil,txtRut.Text,txtProveedor.Text,txtTel.Text,txtCorreo.Text, rubro))
+                    {
+
+
+                        lblErrorMsg.Text = "Se ha creado con éxito el usuario. ";
+                  
+
+
+                    }
+                    else
+                    {
+
+                        lblErrorMsg.Text = "No se ha podido crear el usuario.";
+                        
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    lblErrorMsg.Text = "Error: " + ex.Message.ToString();
+                   
+
+                }
+
+
             }
             catch (Exception)
             {
