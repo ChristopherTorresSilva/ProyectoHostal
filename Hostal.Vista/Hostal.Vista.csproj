@@ -216,6 +216,9 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="home.aspx" />
     <Content Include="img\banner.jpg" />
+    <Content Include="RegistrarEmpleado.aspx" />
+    <Content Include="RegistrarEmpresa.aspx" />
+    <Content Include="RegistrarProveedor.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -413,6 +416,27 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarEmpleado.aspx.cs">
+      <DependentUpon>RegistrarEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarEmpleado.aspx.designer.cs">
+      <DependentUpon>RegistrarEmpleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEmpresa.aspx.cs">
+      <DependentUpon>RegistrarEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarEmpresa.aspx.designer.cs">
+      <DependentUpon>RegistrarEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarProveedor.aspx.cs">
+      <DependentUpon>RegistrarProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarProveedor.aspx.designer.cs">
+      <DependentUpon>RegistrarProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -438,6 +462,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hostal.Negocio\Hostal.Negocio.csproj">
+      <Project>{144eeab0-27e2-4c90-9d25-6e51a9a3a926}</Project>
+      <Name>Hostal.Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
