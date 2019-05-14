@@ -15,9 +15,9 @@ namespace Hostal.Negocio
         {
             try
             {
-                Conexion coneccion = new Conexion();
+                Conexion con = new Conexion();
 
-                OracleCon = coneccion.Get_Connecion();
+                OracleCon = con.Get_Connecion();
             }
             catch (Exception ex)
             {
