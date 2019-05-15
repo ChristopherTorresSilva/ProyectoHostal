@@ -216,6 +216,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="home.aspx" />
     <Content Include="img\banner.jpg" />
+    <Content Include="ListadoUsuarios.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
     <Content Include="RegistrarEmpresa.aspx" />
     <Content Include="RegistrarProveedor.aspx" />
@@ -413,6 +414,13 @@
     </Compile>
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.designer.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
