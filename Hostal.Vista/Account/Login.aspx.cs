@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Hostal.Vista.Models;
 using Oracle.DataAccess.Client;
+using Hostal.Negocio;
 
 namespace Hostal.Vista.Account
 {
@@ -13,31 +14,29 @@ namespace Hostal.Vista.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
-        OracleConnection conexion = new OracleConnection("DATA SOURCE = XE ; PASSWORD = 123 ; USER ID = hostal");
         protected void LogIn(object sender, EventArgs e)
         {
-            conexion.Open();
-            OracleCommand comando = new OracleCommand("SELECT * FROM USUARIO WHERE USERNAME = :usuario and PASSWORD = :password", conexion);
-
-            comando.Parameters.Add(":usuario", txtUsuario.Text);
-            comando.Parameters.Add(":password", txtPass.Text);
-
-            OracleDataReader lector = comando.ExecuteReader();
-            var login = lector.Read();
-            //System.Diagnostics.Debug.WriteLine(lector.Read());
-
-            if (login == true)
+            try
             {
-                Session["username"] = txtUsuario.Text.Trim();
-                Response.Redirect("~/Default.aspx");
-                conexion.Close();
+                USUARIO usuario = new USUARIO();
+                if (usuario.login(txtUsuario.Text, txtPass.Text))
+                {
+                    Session["username"] = txtUsuario.Text.Trim();
+                    Response.Redirect("~/Default.aspx");
+                }
+                else
+                {
+                    lblErrorLogin.Text = "Usuario o contraseña incorrectos";
+                }
 
-            }else
-            {
-                lblErrorLogin.Text = "Nombre de Usuario o Contraseña incorrectos";
             }
+            catch (Exception ex)
+            {
+                lblErrorLogin.Text = "Error: " + ex.Message.ToString();
+            }
+
         }
     }
 }
