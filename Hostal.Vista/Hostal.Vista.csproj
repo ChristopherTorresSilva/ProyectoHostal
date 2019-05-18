@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -216,9 +217,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="home.aspx" />
     <Content Include="img\banner.jpg" />
+    <Content Include="img\minuta.jpg" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
     <Content Include="RegistrarEmpresa.aspx" />
+    <Content Include="RegistrarPlatos.aspx" />
     <Content Include="RegistrarProveedor.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -437,6 +440,13 @@
     </Compile>
     <Compile Include="RegistrarEmpresa.aspx.designer.cs">
       <DependentUpon>RegistrarEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarPlatos.aspx.cs">
+      <DependentUpon>RegistrarPlatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarPlatos.aspx.designer.cs">
+      <DependentUpon>RegistrarPlatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarProveedor.aspx.cs">
       <DependentUpon>RegistrarProveedor.aspx</DependentUpon>
