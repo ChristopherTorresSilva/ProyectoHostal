@@ -1,0 +1,287 @@
+DROP TABLE cargo CASCADE CONSTRAINTS;
+
+DROP TABLE empleado CASCADE CONSTRAINTS;
+
+DROP TABLE empresa CASCADE CONSTRAINTS;
+
+DROP TABLE estado CASCADE CONSTRAINTS;
+
+DROP TABLE factura CASCADE CONSTRAINTS;
+
+DROP TABLE familia CASCADE CONSTRAINTS;
+
+DROP TABLE habitacion CASCADE CONSTRAINTS;
+
+DROP TABLE huesped CASCADE CONSTRAINTS;
+
+DROP TABLE orden_compra CASCADE CONSTRAINTS;
+
+DROP TABLE orden_pedido CASCADE CONSTRAINTS;
+
+DROP TABLE perfil CASCADE CONSTRAINTS;
+
+DROP TABLE platos CASCADE CONSTRAINTS;
+
+DROP TABLE producto CASCADE CONSTRAINTS;
+
+DROP TABLE proveedor CASCADE CONSTRAINTS;
+
+DROP TABLE rubro CASCADE CONSTRAINTS;
+
+DROP TABLE tipo_cama CASCADE CONSTRAINTS;
+
+DROP TABLE tipo_producto CASCADE CONSTRAINTS;
+
+DROP TABLE tipo_servicio CASCADE CONSTRAINTS;
+
+DROP TABLE usuario CASCADE CONSTRAINTS;
+
+CREATE TABLE cargo (
+    id            NUMBER(10) NOT NULL,
+    nombre        VARCHAR2(30) NOT NULL,
+    descripcion   VARCHAR2(255) NOT NULL
+);
+
+ALTER TABLE cargo ADD CONSTRAINT cargo_pk PRIMARY KEY ( id );
+
+CREATE TABLE empleado (
+    id           NUMBER(10) NOT NULL,
+    nombre       VARCHAR2(20) NOT NULL,
+    apellido     VARCHAR2(20) NOT NULL,
+    rut          VARCHAR2(13) NOT NULL,
+    cargo_id     NUMBER(10) NOT NULL,
+    usuario_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE empleado ADD CONSTRAINT empleado_pk PRIMARY KEY ( id );
+
+CREATE TABLE empresa (
+    id           NUMBER(10) NOT NULL,
+    rut          VARCHAR2(20) NOT NULL,
+    nombre       VARCHAR2(30) NOT NULL,
+    correo       VARCHAR2(255) NOT NULL,
+    usuario_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE empresa ADD CONSTRAINT empresa_pk PRIMARY KEY ( id );
+
+CREATE TABLE estado (
+    id       NUMBER(10) NOT NULL,
+    nombre   VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE estado ADD CONSTRAINT estado_pk PRIMARY KEY ( id );
+
+CREATE TABLE factura (
+    id                NUMBER(10) NOT NULL,
+    empresa_id        NUMBER(10) NOT NULL,
+    archivo           VARCHAR2(255) NOT NULL,
+    orden_compra_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE factura ADD CONSTRAINT factura_pk PRIMARY KEY ( id );
+
+CREATE TABLE familia (
+    id       NUMBER(10) NOT NULL,
+    nombre   VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE familia ADD CONSTRAINT familia_pk PRIMARY KEY ( id );
+
+CREATE TABLE habitacion (
+    id                  NUMBER(10) NOT NULL,
+    numero_habitacion   NUMBER(2) NOT NULL,
+    precio              NUMBER(5) NOT NULL,
+    tipo_cama_id        NUMBER(10) NOT NULL,
+    estado_id           NUMBER(10) NOT NULL
+);
+
+ALTER TABLE habitacion ADD CONSTRAINT habitacion_pk PRIMARY KEY ( id );
+
+CREATE TABLE huesped (
+    id              NUMBER(10) NOT NULL,
+    nombre          VARCHAR2(20) NOT NULL,
+    apellido        VARCHAR2(20) NOT NULL,
+    rut             VARCHAR2(13) NOT NULL,
+    empresa_id      NUMBER(10) NOT NULL,
+    habitacion_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE huesped ADD CONSTRAINT huesped_pk PRIMARY KEY ( id );
+
+CREATE TABLE orden_compra (
+    id                 NUMBER(10) NOT NULL,
+    huesped_id         NUMBER(10) NOT NULL,
+    servicio_id        NUMBER(10) NOT NULL,
+    archivo            VARCHAR2(255) NOT NULL,
+    total              NUMBER(10) NOT NULL,
+    habitacion_id      NUMBER(10) NOT NULL,
+    tipo_servicio_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE orden_compra ADD CONSTRAINT orden_compra_pk PRIMARY KEY ( id );
+
+CREATE TABLE orden_pedido (
+    id             NUMBER(10) NOT NULL,
+    cantidad       NUMBER(3) NOT NULL,
+    total          NUMBER(10) NOT NULL,
+    empleado_id    NUMBER(10) NOT NULL,
+    proveedor_id   NUMBER(10) NOT NULL,
+    producto_id    NUMBER(10) NOT NULL
+);
+
+ALTER TABLE orden_pedido ADD CONSTRAINT orden_pedido_pk PRIMARY KEY ( id );
+
+CREATE TABLE perfil (
+    id            NUMBER(10) NOT NULL,
+    nombre        VARCHAR2(20) NOT NULL,
+    descripcion   VARCHAR2(255) NOT NULL
+);
+
+ALTER TABLE perfil ADD CONSTRAINT perfil_pk PRIMARY KEY ( id );
+
+CREATE TABLE platos (
+    id                 NUMBER(10) NOT NULL,
+    nombre             VARCHAR2(255),
+    tipo_servicio_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE platos ADD CONSTRAINT platos_pk PRIMARY KEY ( id );
+
+CREATE TABLE producto (
+    id                 NUMBER(10) NOT NULL,
+    codigo             NUMBER(17) NOT NULL,
+    nombre             VARCHAR2(30) NOT NULL,
+    precio             NUMBER(4) NOT NULL,
+    tipo_producto_id   NUMBER(10) NOT NULL,
+    familia_id         NUMBER(10) NOT NULL
+);
+
+ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id );
+
+CREATE TABLE proveedor (
+    id           NUMBER(10) NOT NULL,
+    nombre       VARCHAR2(30) NOT NULL,
+    rut          VARCHAR2(13) NOT NULL,
+    telefono     NUMBER(11) NOT NULL,
+    correo       VARCHAR2(255) NOT NULL,
+    rubro_id     NUMBER(10) NOT NULL,
+    usuario_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE proveedor ADD CONSTRAINT proveedor_pk PRIMARY KEY ( id );
+
+CREATE TABLE rubro (
+    id       NUMBER(10) NOT NULL,
+    nombre   VARCHAR2(30) NOT NULL
+);
+
+ALTER TABLE rubro ADD CONSTRAINT rubro_pk PRIMARY KEY ( id );
+
+CREATE TABLE tipo_cama (
+    id       NUMBER(10) NOT NULL,
+    nombre   VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE tipo_cama ADD CONSTRAINT tipo_cama_pk PRIMARY KEY ( id );
+
+CREATE TABLE tipo_producto (
+    id       NUMBER(10) NOT NULL,
+    nombre   VARCHAR2(20) NOT NULL
+);
+
+ALTER TABLE tipo_producto ADD CONSTRAINT tipo_producto_pk PRIMARY KEY ( id );
+
+CREATE TABLE tipo_servicio (
+    id            NUMBER(10) NOT NULL,
+    nombre        VARCHAR2(30) NOT NULL,
+    descripcion   VARCHAR2(255) NOT NULL,
+    precio        NUMBER(10)
+);
+
+ALTER TABLE tipo_servicio ADD CONSTRAINT tipo_servicio_pk PRIMARY KEY ( id );
+
+CREATE TABLE usuario (
+    id          NUMBER(10) NOT NULL,
+    username    VARCHAR2(20) NOT NULL,
+    password    VARCHAR2(20) NOT NULL,
+    perfil_id   NUMBER(10) NOT NULL
+);
+
+ALTER TABLE usuario ADD CONSTRAINT usuario_pk PRIMARY KEY ( id );
+
+ALTER TABLE empleado
+    ADD CONSTRAINT empleado_cargo_fk FOREIGN KEY ( cargo_id )
+        REFERENCES cargo ( id );
+
+ALTER TABLE empleado
+    ADD CONSTRAINT empleado_usuario_fk FOREIGN KEY ( usuario_id )
+        REFERENCES usuario ( id );
+
+ALTER TABLE empresa
+    ADD CONSTRAINT empresa_usuario_fk FOREIGN KEY ( usuario_id )
+        REFERENCES usuario ( id );
+
+ALTER TABLE factura
+    ADD CONSTRAINT factura_orden_compra_fk FOREIGN KEY ( orden_compra_id )
+        REFERENCES orden_compra ( id );
+
+ALTER TABLE habitacion
+    ADD CONSTRAINT habitacion_estado_fk FOREIGN KEY ( estado_id )
+        REFERENCES estado ( id );
+
+ALTER TABLE habitacion
+    ADD CONSTRAINT habitacion_tipo_cama_fk FOREIGN KEY ( tipo_cama_id )
+        REFERENCES tipo_cama ( id );
+
+ALTER TABLE huesped
+    ADD CONSTRAINT huesped_empresa_fk FOREIGN KEY ( empresa_id )
+        REFERENCES empresa ( id );
+
+ALTER TABLE huesped
+    ADD CONSTRAINT huesped_habitacion_fk FOREIGN KEY ( habitacion_id )
+        REFERENCES habitacion ( id );
+
+ALTER TABLE orden_compra
+    ADD CONSTRAINT orden_compra_huesped_fk FOREIGN KEY ( huesped_id )
+        REFERENCES huesped ( id );
+
+ALTER TABLE orden_compra
+    ADD CONSTRAINT orden_compra_tipo_servicio_fk FOREIGN KEY ( tipo_servicio_id )
+        REFERENCES tipo_servicio ( id );
+
+ALTER TABLE orden_pedido
+    ADD CONSTRAINT orden_pedido_empleado_fk FOREIGN KEY ( empleado_id )
+        REFERENCES empleado ( id );
+
+ALTER TABLE orden_pedido
+    ADD CONSTRAINT orden_pedido_producto_fk FOREIGN KEY ( producto_id )
+        REFERENCES producto ( id );
+
+ALTER TABLE orden_pedido
+    ADD CONSTRAINT orden_pedido_proveedor_fk FOREIGN KEY ( proveedor_id )
+        REFERENCES proveedor ( id );
+
+ALTER TABLE platos
+    ADD CONSTRAINT platos_tipo_servicio_fk FOREIGN KEY ( tipo_servicio_id )
+        REFERENCES tipo_servicio ( id );
+
+ALTER TABLE producto
+    ADD CONSTRAINT producto_familia_fk FOREIGN KEY ( familia_id )
+        REFERENCES familia ( id );
+
+ALTER TABLE producto
+    ADD CONSTRAINT producto_tipo_producto_fk FOREIGN KEY ( tipo_producto_id )
+        REFERENCES tipo_producto ( id );
+
+ALTER TABLE proveedor
+    ADD CONSTRAINT proveedor_rubro_fk FOREIGN KEY ( rubro_id )
+        REFERENCES rubro ( id );
+
+ALTER TABLE proveedor
+    ADD CONSTRAINT proveedor_usuario_fk FOREIGN KEY ( usuario_id )
+        REFERENCES usuario ( id );
+
+ALTER TABLE usuario
+    ADD CONSTRAINT usuario_perfil_fk FOREIGN KEY ( perfil_id )
+        REFERENCES perfil ( id );
