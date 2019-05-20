@@ -25,6 +25,7 @@ namespace Hostal.Negocio
             }
 
         }
+
         public USUARIO(string sqlcon)
         {
             try
@@ -72,6 +73,29 @@ namespace Hostal.Negocio
                 //System.Diagnostics.Debug.WriteLine(userN);
                 return dt;
             }
+        }
+
+        public bool login(string user, string pass)
+        {
+            OracleCon.Open();
+            OracleCommand _OracleCommand = new OracleCommand("SELECT * FROM USUARIO WHERE USERNAME = :usuario and PASSWORD = :password", OracleCon);
+            
+            _OracleCommand.Parameters.Add(":usuario", OracleDbType.Varchar2).Value = user;
+            _OracleCommand.Parameters.Add(":password", OracleDbType.Varchar2).Value = pass;
+
+            OracleDataReader lector = _OracleCommand.ExecuteReader();
+            var login = lector.Read();
+            
+            OracleCon.Close();
+            if (login)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
