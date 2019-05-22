@@ -68,7 +68,7 @@ namespace Hostal.Negocio
 
                 return dt;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //System.Diagnostics.Debug.WriteLine(userN);
                 return dt;
