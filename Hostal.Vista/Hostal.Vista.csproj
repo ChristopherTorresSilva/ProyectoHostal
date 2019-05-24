@@ -215,13 +215,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="img\habitacionDoble.jpg" />
     <Content Include="home.aspx" />
     <Content Include="img\banner.jpg" />
     <Content Include="img\minuta.jpg" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
     <Content Include="RegistrarEmpresa.aspx" />
-    <Content Include="RegistrarPlatos.aspx" />
+    <Content Include="RegistrarHabitacion.aspx" />
     <Content Include="RegistrarProveedor.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -441,12 +442,12 @@
     <Compile Include="RegistrarEmpresa.aspx.designer.cs">
       <DependentUpon>RegistrarEmpresa.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarPlatos.aspx.cs">
-      <DependentUpon>RegistrarPlatos.aspx</DependentUpon>
+    <Compile Include="RegistrarHabitacion.aspx.cs">
+      <DependentUpon>RegistrarHabitacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RegistrarPlatos.aspx.designer.cs">
-      <DependentUpon>RegistrarPlatos.aspx</DependentUpon>
+    <Compile Include="RegistrarHabitacion.aspx.designer.cs">
+      <DependentUpon>RegistrarHabitacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarProveedor.aspx.cs">
       <DependentUpon>RegistrarProveedor.aspx</DependentUpon>
