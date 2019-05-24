@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarPlatos.aspx.cs" Inherits="Hostal.Vista.RegistrarPlatos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="row">
+    <div class="row"> 
         <div>
             <h1>Registro de platos</h1>
             <section>
@@ -19,29 +19,30 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="dropTipoServicio" CssClass="col-md-2 control-label">Tipo de Servicio</asp:Label>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="dropTipoServicio" runat="server" CssClass="form-control ">
+                            <asp:DropDownList ID="dropTipoServicio" runat="server" CssClass="form-control " OnSelectedIndexChanged="dropTipoServicio_SelectedIndexChanged" AutoPostBack="True">
                             </asp:DropDownList>
                         </div>
                     </div>
                 </div>
 
+
                 <%--PRECIO DE SERVICIO--%>
-                <div class="form-horizontal">
+                 <div class="form-horizontal">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="dropPrecioServicio" CssClass="col-md-2 control-label">Precio de Servicio</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="txtPrecio" CssClass="col-md-2 control-label">Precio de Servicio</asp:Label>
                         <div class="col-md-10">
-                            <asp:DropDownList ID="dropPrecioServicio" runat="server" CssClass="form-control ">
-                            </asp:DropDownList>
+                            <asp:TextBox Id="txtPrecio" runat="server" Enabled="False" />
+
                         </div>
                     </div>
                 </div>
+
+
 
                 <%--MENSAJE ERROR--%>
                 <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>
 
                 <%--BOTON--%>
-
-
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" ID="btnCrearPlato" Text="Registrar Plato" CssClass="btn btn-default" OnClick="btnCrearPlato_Click" />
                 </div>
