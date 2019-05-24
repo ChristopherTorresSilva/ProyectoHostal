@@ -39,7 +39,7 @@ namespace Hostal.Negocio
             }
         }
 
-        public bool CreatePlatos(int newprecio,
+        public bool CreatePlatos(string newnombre,
             int newtiposervicio)
         {
             //System.Diagnostics.Debug.WriteLine(userN);
@@ -55,7 +55,7 @@ namespace Hostal.Negocio
 
                 //OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPLEADO", OracleCon);
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
-                _OracleCommand.Parameters.Add("newprecio", OracleDbType.Int32).Value = newprecio;
+                _OracleCommand.Parameters.Add("newnombre", OracleDbType.Varchar2).Value = newnombre;
                 _OracleCommand.Parameters.Add("newtiposervicio", OracleDbType.Int32).Value = newtiposervicio;
 
 
