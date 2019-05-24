@@ -285,3 +285,8 @@ ALTER TABLE proveedor
 ALTER TABLE usuario
     ADD CONSTRAINT usuario_perfil_fk FOREIGN KEY ( perfil_id )
         REFERENCES perfil ( id );
+
+
+--Insert
+INSERT INTO PERFIL VALUES (1, 'Root', 'Administrador del Sistema');
+INSERT INTO USUARIO VALUES (1, 'Root', '5678', 1);

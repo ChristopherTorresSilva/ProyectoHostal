@@ -8,10 +8,10 @@ using System.Data;
 
 namespace Hostal.Negocio
 {
-    public class USUARIO
+    public class Platos
     {
         OracleConnection OracleCon = new OracleConnection();
-        public USUARIO()
+        public Platos()
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Hostal.Negocio
 
         }
 
-        public USUARIO(string sqlcon)
+        public Platos(string sqlcon)
         {
             try
             {
@@ -39,63 +39,48 @@ namespace Hostal.Negocio
             }
         }
 
-
-
-        public DataTable ListaUsuarios()
+        public bool CreatePlatos(int newprecio,
+            int newtiposervicio)
         {
             //System.Diagnostics.Debug.WriteLine(userN);
             DataTable dt = new DataTable();
             try
             {
 
-                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter();
+                //
                 OracleCommand _OracleCommand = new OracleCommand();
-
-                _OracleCommand.CommandText = "seleccionaUsuarios";
+                _OracleCommand.CommandText = "INSERTAR_PLATO";
                 _OracleCommand.Connection = OracleCon;
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
 
+                //OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPLEADO", OracleCon);
+                _OracleCommand.CommandType = CommandType.StoredProcedure;
+                _OracleCommand.Parameters.Add("newprecio", OracleDbType.Int32).Value = newprecio;
+                _OracleCommand.Parameters.Add("newtiposervicio", OracleDbType.Int32).Value = newtiposervicio;
 
-                _OracleCommand.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
+
+                //_OracleCommand.ExecuteNonQuery();
                 OracleCon.Open();
-                _OracleDataAdapter.SelectCommand = _OracleCommand;
+                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                //_OracleDataAdapter.SelectCommand = _OracleCommand;
                 _OracleDataAdapter.Fill(dt);
+                System.Diagnostics.Debug.WriteLine(dt.Rows.Count);
                 OracleCon.Close();
 
 
-
-
-                return dt;
-            }
-            catch (Exception)
-            {
-                //System.Diagnostics.Debug.WriteLine(userN);
-                return dt;
-            }
-        }
-
-        public bool login(string user, string pass)
-        {
-            OracleCon.Open();
-            OracleCommand _OracleCommand = new OracleCommand("SELECT * FROM USUARIO WHERE USERNAME = :usuario and PASSWORD = :password", OracleCon);
-            
-            _OracleCommand.Parameters.Add(":usuario", OracleDbType.Varchar2).Value = user;
-            _OracleCommand.Parameters.Add(":password", OracleDbType.Varchar2).Value = pass;
-
-            OracleDataReader lector = _OracleCommand.ExecuteReader();
-            var login = lector.Read();
-            
-            OracleCon.Close();
-            if (login)
-            {
                 return true;
             }
-            else
+            catch (Exception ex)
             {
+                //System.Diagnostics.Debug.WriteLine(userN);
                 return false;
             }
-
         }
+
+
+
+
+
     }
 }
