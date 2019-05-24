@@ -14,6 +14,9 @@
                     <asp:Label runat="server" AssociatedControlID="dropHuesped"  CssClass="col-md-2 control-label">Tipo de Huesped:</asp:Label>
                       <div class="col-md-10">
                         <asp:DropDownList ID="dropHuesped" runat="server" CssClass="form-control " AutoPostBack="True" OnSelectedIndexChanged="dropHuesped_SelectedIndexChanged1" >
+                            <asp:ListItem Text="" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Antiguo" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="Nuevo" Value="2"></asp:ListItem>
                         </asp:DropDownList>
                            <br />
                       </div>
@@ -21,7 +24,7 @@
                 <div class="form-group">
                   <asp:Label runat="server" AssociatedControlID="huespedAntiguo" CssClass="col-md-2 control-label">Huesped:</asp:Label>
                    <div class="col-md-10">
-                   <asp:DropDownList ID="huespedAntiguo" runat="server" CssClass="form-control " Enabled="False" AutoPostBack="True">
+                   <asp:DropDownList ID="huespedAntiguo" runat="server" CssClass="form-control " Enabled="False">
                    </asp:DropDownList>
                     <br />
                   </div>
@@ -29,7 +32,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="dropCama"  CssClass="col-md-2 control-label">Tipo de Cama:</asp:Label>
                       <div class="col-md-10">
-                        <asp:DropDownList ID="dropCama" runat="server" CssClass="form-control " Enabled="False" AutoPostBack="True">
+                        <asp:DropDownList ID="dropCama" runat="server" CssClass="form-control " Enabled="False">
                         </asp:DropDownList>
                            <br />
                       </div>
@@ -37,7 +40,7 @@
                 <div class="form-group">
                    <asp:Label runat="server" AssociatedControlID="txtNombre"  CssClass="col-md-2 control-label">Nombre:</asp:Label>
                      <div class="col-md-10">
-                        <asp:TextBox ID="txtNombre" runat="server" Width="1473px" Enabled="False" AutoPostBack="True"></asp:TextBox>
+                        <asp:TextBox ID="txtNombre" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
                         <br />
                      </div>
                      <br />
@@ -45,7 +48,7 @@
                 <div class="form-group">
                    <asp:Label runat="server" AssociatedControlID="txtApellido"  CssClass="col-md-2 control-label">Apellido:</asp:Label>
                      <div class="col-md-10">
-                        <asp:TextBox ID="txtApellido" runat="server" Width="1473px" Enabled="False" AutoPostBack="True"></asp:TextBox>
+                        <asp:TextBox ID="txtApellido" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
                         <br />
                      </div>
                      <br />
@@ -53,7 +56,7 @@
                 <div class="form-group">
                    <asp:Label runat="server" AssociatedControlID="txtRut"  CssClass="col-md-2 control-label">Rut:</asp:Label>
                      <div class="col-md-10">
-                        <asp:TextBox ID="txtRut" runat="server" Width="1473px" Enabled="False" AutoPostBack="True"></asp:TextBox>
+                        <asp:TextBox ID="txtRut" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
                         <br />
                      </div>
                      <br />
@@ -61,7 +64,7 @@
                 <div class="form-group">
                   <asp:Label runat="server" AssociatedControlID="dropEmpresa" CssClass="col-md-2 control-label">Empresa:</asp:Label>
                    <div class="col-md-10">
-                   <asp:DropDownList ID="dropEmpresa" runat="server" CssClass="form-control " Enabled="False" AutoPostBack="True">
+                   <asp:DropDownList ID="dropEmpresa" runat="server" CssClass="form-control " Enabled="False">
                    </asp:DropDownList>
                     <br />
                   </div>
@@ -85,7 +88,7 @@
                 <div class="form-group">
                    <asp:Label runat="server" AssociatedControlID="txtPrecio"  CssClass="col-md-2 control-label" Visible="true">Precio:</asp:Label>
                      <div class="col-md-10">
-                        <asp:TextBox ID="txtPrecio" runat="server" Width="1473px" Enabled="False" AutoPostBack="True"></asp:TextBox>
+                        <asp:TextBox ID="txtPrecio" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
                         <br />
                      </div>
                      <br />
