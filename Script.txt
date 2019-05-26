@@ -112,7 +112,6 @@ ALTER TABLE huesped ADD CONSTRAINT huesped_pk PRIMARY KEY ( id );
 CREATE TABLE orden_compra (
     id                 NUMBER(10) NOT NULL,
     huesped_id         NUMBER(10) NOT NULL,
-    servicio_id        NUMBER(10) NOT NULL,
     archivo            VARCHAR2(255) NOT NULL,
     total              NUMBER(10) NOT NULL,
     habitacion_id      NUMBER(10) NOT NULL,
@@ -286,7 +285,36 @@ ALTER TABLE usuario
     ADD CONSTRAINT usuario_perfil_fk FOREIGN KEY ( perfil_id )
         REFERENCES perfil ( id );
 
-
 --Insert
-INSERT INTO PERFIL VALUES (1, 'Root', 'Administrador del Sistema');
-INSERT INTO USUARIO VALUES (1, 'Root', '5678', 1);
+
+
+INSERT INTO PERFIL(ID, NOMBRE, DESCRIPCION) VALUES (1, 'Root', 'Administrador Primario del Sistema');
+INSERT INTO PERFIL(ID, NOMBRE, DESCRIPCION) VALUES (2, 'Empresa', 'Usuario del Sistema');
+INSERT INTO PERFIL(ID, NOMBRE, DESCRIPCION) VALUES (3, 'Proveedor', 'Usuario del Sistema');
+INSERT INTO PERFIL(ID, NOMBRE, DESCRIPCION) VALUES (4, 'Administrador', 'Administrador del Sistema');
+
+
+INSERT INTO USUARIO (ID, USERNAME, PASSWORD, PERFIL_ID) VALUES (1, 'Root', '5678', 1);
+
+
+INSERT INTO CARGO(ID, NOMBRE, DESCRIPCION) VALUES (1, 'Recepcionista', 'Trabajador del Hostal');
+INSERT INTO CARGO(ID, NOMBRE, DESCRIPCION) VALUES (2, 'Encargado de Aseo', 'Trabajador del Hostal');
+INSERT INTO CARGO(ID, NOMBRE, DESCRIPCION) VALUES (3, 'Cocinero', 'Trabajador del Hostal');
+
+
+INSERT INTO ESTADO (ID, NOMBRE) VALUES (1, 'Disponible');
+INSERT INTO ESTADO (ID, NOMBRE) VALUES (2, 'Mantenimiento');
+INSERT INTO ESTADO (ID, NOMBRE) VALUES (3, 'Ocupado');
+
+INSERT INTO RUBRO (ID, NOMBRE) VALUES (1, 'Lacteos');
+INSERT INTO RUBRO (ID, NOMBRE) VALUES (2, 'Aseo');
+INSERT INTO RUBRO (ID, NOMBRE) VALUES (3, 'Carnes')
+
+
+INSERT INTO TIPO_CAMA (ID, NOMBRE) VALUES (1, 'Simple');
+INSERT INTO TIPO_CAMA (ID, NOMBRE) VALUES (2, 'Familiar');
+
+
+INSERT INTO TIPO_SERVICIO (ID, NOMBRE, DESCRIPCION, PRECIO) VALUES (1, 'General', 'Servicio General', '10000');
+INSERT INTO TIPO_SERVICIO (ID, NOMBRE, DESCRIPCION, PRECIO) VALUES (2, 'Especial', 'Servicio Especial (Veg, Vegan)', '20000');
+INSERT INTO TIPO_SERVICIO (ID, NOMBRE, DESCRIPCION, PRECIO) VALUES (3, 'Ejecutivo', 'Servicio Ejecutivo', '30000');
