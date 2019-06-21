@@ -71,6 +71,7 @@ namespace Hostal.Vista
         {
             int tipoServ = int.Parse(dropTipoServicio.SelectedValue);
             string precio = (txtPrecio.Text);
+            string precioFin = (txtPrecioFin.Text);
             try
             {
                 Platos platos = new Platos();
@@ -102,20 +103,33 @@ namespace Hostal.Vista
             var serv = dropTipoServicio.SelectedItem.Text;
             //int eje = 0;
             var eje = "";
+            var pre = "";
             switch (serv)
             {
                 case "Ejecutivo":
                     eje = "Arroz con Pollito";
+                    pre = "7000";
                     break;
                 case "Especial":
                     eje = "Puré Con Filete de Res";
+                    pre = "10000";
                     break;
                 case "General":
                     eje = "Puré con vienesa";
+                    pre = "5000";
                     break;
             }
             txtPrecio.Text = eje.ToString();
+            txtPrecioFin.Text = pre.ToString();
         }
+
+
+
+
+
+
+
+
 
     }
 }

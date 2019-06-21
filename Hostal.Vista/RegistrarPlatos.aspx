@@ -1,13 +1,14 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarPlatos.aspx.cs" Inherits="Hostal.Vista.RegistrarPlatos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="row"> 
-        <div>
-            <h1>Registro de platos</h1>
+    <div class="form-group col-lg-12"> 
+        <div class="form-group"> </br></br></br></br>
+            
             <section>
 
                 <div class="row">
                     <center>
+                    
                     <img src="img/minuta.jpg"/>
                     </center>
                     </br>
@@ -26,13 +27,24 @@
                 </div>
 
 
-                <%--PRECIO DE SERVICIO--%>
+                <%--PLATO DE SERVICIO--%>
                  <div class="form-horizontal">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="txtPrecio" CssClass="col-md-2 control-label">Precio de Servicio</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="txtPrecio" CssClass="col-md-2 control-label">Plato</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox Id="txtPrecio" runat="server" Enabled="False" />
+                            <asp:TextBox Id="txtPrecio" CssClass="form-control " runat="server" Enabled="False" />
+                        </div>
+                    </div>
+                </div>
 
+
+
+               <%--PRECIO DE SERVICIO--%>
+                 <div class="form-horizontal">
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="txtPrecioFin" CssClass="col-md-2 control-label">Precio</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox Id="txtPrecioFin" CssClass="form-control " runat="server" Enabled="False" />
                         </div>
                     </div>
                 </div>
@@ -44,7 +56,7 @@
 
                 <%--BOTON--%>
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" ID="btnCrearPlato" Text="Registrar Plato" CssClass="btn btn-default" OnClick="btnCrearPlato_Click" />
+                    <asp:Button class="btn btn-w-m btn-danger" runat="server" ID="btnCrearPlato" Text="Registrar Plato"  OnClick="btnCrearPlato_Click" />
                 </div>
 
             </section>
