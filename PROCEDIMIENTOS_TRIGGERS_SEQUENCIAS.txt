@@ -66,11 +66,23 @@ INSERT INTO ORDEN_COMPRA (ID,HUESPED_ID,SERVICIO_ID,ARCHIVO,TOTAL,HABITACION_ID,
 values (round(dbms_random.value(10000,99999)), huesped_id, servicio_id, archivo, total, habitacion_id, tipo_servicio_id);
 END;
 
---CREATE OR REPLACE PROCEDURE INSERTAR_PLATO (newNombre in VAECHAR2, newTipoServicio in NUMERIC)
+--PROCEDIMIENTO QUE CREA INSERTA UN PLATO
+CREATE OR REPLACE PROCEDURE INSERTAR_PLATO (newNombre in VAECHAR2, newTipoServicio in NUMERIC)
 IS BEGIN
 INSERT INTO PLATOS (ID, NOMBRE, TIPO_SERVICIO_ID)
-VALUES (round(dbms_random.value(10000, 99999)), newNombre, newTipoServicio)
+VALUES (round(dbms_random.value(10000, 99999)), newNombre, newTipoServicio);
 END;
+
+
+
+--PROCEDIMIENTO QUE INSERTA UNA ORDEN DE PEDIDO
+CREATE OR REPLACE PROCEDURE INSERTAR_ORDEN_PEDIDO (newCantidad in NUMERIC, newTotal in NUMERIC, newEmpleadoId in NUMERIC, newProveedorId in Numeric, newProductoId in NUMERIC)
+IS BEGIN
+INSERT INTO ORDEN_PEDIDO (ID, CANTIDAD, TOTAL, EMPLEADO_ID, PROVEEDOR_ID, PRODUCTO_ID)
+VALUES (round(dbms_random.value(10000, 99999)), newCantidad, newTotal, newEmpleadoId, newProveedorId, newProductoId);
+END;
+
+
 --SECUENCIAS
 
 --TRIGGERS
