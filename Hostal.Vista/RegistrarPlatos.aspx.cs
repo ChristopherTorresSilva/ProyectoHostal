@@ -67,15 +67,46 @@ namespace Hostal.Vista
          
         }
 
+        public void Clear()
+        {
+            //txtNombre.Text = string.Empty;
+            //txtApellido.Text = string.Empty;
+            //txtRut.Text = string.Empty;
+        }
+        
+        protected void dropTipoServicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //var serv = dropTipoServicio.SelectedItem.Text;
+            ////int eje = 0;
+            //var eje = "";
+            //var pre = "";
+            //switch (serv)
+            //{
+            //    case "Ejecutivo":
+            //        eje = "Arroz con Pollito";
+            //        pre = "7000";
+            //        break;
+            //    case "Especial":
+            //        eje = "Puré Con Filete de Res";
+            //        pre = "10000";
+            //        break;
+            //    case "General":
+            //        eje = "Puré con vienesa";
+            //        pre = "5000";
+            //        break;
+            //}
+            //txtPrecio.Text = eje.ToString();
+            //txtPrecioFin.Text = pre.ToString();
+        }
+
         protected void btnCrearPlato_Click(object sender, EventArgs e)
         {
             int tipoServ = int.Parse(dropTipoServicio.SelectedValue);
-            string precio = (txtPrecio.Text);
-            string precioFin = (txtPrecioFin.Text);
+            string plato = inPlato.Value;
             try
             {
                 Platos platos = new Platos();
-                if (platos.CreatePlatos(precio, tipoServ))
+                if (platos.CreatePlatos(plato, tipoServ))
                 {
                     lblErrorMsg.Text = "Se ha registrado su plato, que lo disfrute";
                 }
@@ -89,38 +120,6 @@ namespace Hostal.Vista
                 lblErrorMsg.Text = "Error: " + ex.Message.ToString();
             }
 
-        }
-
-        public void Clear()
-        {
-            //txtNombre.Text = string.Empty;
-            //txtApellido.Text = string.Empty;
-            //txtRut.Text = string.Empty;
-        }
-        
-        protected void dropTipoServicio_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var serv = dropTipoServicio.SelectedItem.Text;
-            //int eje = 0;
-            var eje = "";
-            var pre = "";
-            switch (serv)
-            {
-                case "Ejecutivo":
-                    eje = "Arroz con Pollito";
-                    pre = "7000";
-                    break;
-                case "Especial":
-                    eje = "Puré Con Filete de Res";
-                    pre = "10000";
-                    break;
-                case "General":
-                    eje = "Puré con vienesa";
-                    pre = "5000";
-                    break;
-            }
-            txtPrecio.Text = eje.ToString();
-            txtPrecioFin.Text = pre.ToString();
         }
 
 

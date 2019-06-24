@@ -22,22 +22,13 @@ namespace Hostal.Vista {
         protected global::System.Web.UI.WebControls.DropDownList dropTipoServicio;
         
         /// <summary>
-        /// Control txtPrecio.
+        /// Control inPlato.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecio;
-        
-        /// <summary>
-        /// Control txtPrecioFin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrecioFin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inPlato;
         
         /// <summary>
         /// Control lblErrorMsg.
