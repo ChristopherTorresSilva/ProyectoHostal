@@ -64,7 +64,6 @@ namespace Hostal.Vista
                 dropProducto.DataBind();
                 emptyItem = new ListItem("", "");
                 dropProducto.Items.Insert(0, emptyItem);
-
             }
             catch (Exception ex)
             {
@@ -99,21 +98,62 @@ namespace Hostal.Vista
         protected void dropProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            
         }
 
-        protected void dropCantidad_Selection_Change(object sender, EventArgs e)
+        //protected void dropCantidad_Selection_Change(object sender, EventArgs e)
+        //{
+        //    var precioId = dropProducto.SelectedItem.Value;
+        //    OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId, conexion);
+        //    comando.Parameters.Add(precioId, txtTotal.Text);
+        //    conexion.Open();
+        //    OracleDataReader registro = comando.ExecuteReader();
+        //    if (registro.Read())
+        //    {
+        //        string op = registro["PRECIO"].ToString();
+        //        int tot = int.Parse(op) * int.Parse(dropCantidad.Text);
+        //        txtTotal.Text = tot.ToString();
+        //    }
+        //    conexion.Close();
+
+        //    //int total = 0;
+        //    //var precioId = int.Parse(dropProducto.SelectedItem.Value);
+        //    //string precio = "SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId;
+        //    //total = int.Parse(precio) * int.Parse(dropCantidad.Text); // value
+        //    //txtTotal.Text = total.ToString();
+        //}
+
+        protected void inCantidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int total = 0;
-            //var precio = int.Parse(dropProducto.SelectedItem.Value);
-            //total = precio * int.Parse(dropCantidad.Text); // value
-            //txtTotal.Text = total.ToString();
-        }
+            var precioId = dropProducto.SelectedItem.Value;
+            OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId, conexion);
+            comando.Parameters.Add(precioId, txtTotal.Text);
+            conexion.Open();
+            OracleDataReader registro = comando.ExecuteReader();
+            if (registro.Read())
+            {
+                string op = registro["PRECIO"].ToString();
+                int tot = int.Parse(op) * int.Parse(inCantidad.Text);
+                txtTotal.Text = tot.ToString();
+            }
+            conexion.Close();
 
+            //var precioId = dropProducto.SelectedItem.Value;
+            //OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId, conexion);
+            //comando.Parameters.Add(precioId, txtTotal.Text);
+            //conexion.Open();
+            //OracleDataReader registro = comando.ExecuteReader();
+            //if (registro.Read())
+            //{
+            //    string op = registro["PRECIO"].ToString();
+            //    int tot = int.Parse(op) * int.Parse(inCantidad.Value);
+            //    txtTotal.Text = tot.ToString();
+            //}
+            //conexion.Close();
+        }
 
         protected void btnCrearOrden_Click(object sender, EventArgs e)
         {
-            int cantidad = int.Parse(dropCantidad.SelectedValue);
+            int cantidad = int.Parse(inCantidad.Text);
             int total = int.Parse(txtTotal.Text);
             int empleado = int.Parse(dropEmpleado.SelectedValue);
             int proveedor = int.Parse(dropProveedor.SelectedValue);
@@ -139,8 +179,9 @@ namespace Hostal.Vista
 
         }
 
+        protected void txtTotal_TextChanged(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }

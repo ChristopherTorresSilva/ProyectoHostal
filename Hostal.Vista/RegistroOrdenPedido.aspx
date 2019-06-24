@@ -40,22 +40,24 @@
             </div>
 
             <%--CANTIDAD--%>
-            <%--                <div class="form-horizontal">
+               <div class="form-horizontal">
                     <div class="form-group">
                         <asp:Label runat="server" CssClass="col-md-2 control-label">Cantidad</asp:Label>
                         <div class="col-md-10">
-                           <input ID="inCantidad" type="number" OnSelectedIndexChanged="inCantidad_SelectedIndexChanged" CssClass="form-control " runat="server" min="1"/>
+                             <asp:TextBox ID="inCantidad" type="number" CssClass="form-control " runat="server" OnTextChanged="inCantidad_SelectedIndexChanged" AutoPostBack="True" TextMode="Number" MaxLength="3" />
+                           <%--<input ID="inCantidad" type="number" AutoPostBack="True" OnSelectedIndexChanged="inCantidad_SelectedIndexChanged" CssClass="form-control " runat="server" min="1"/>--%>
                         </div>
                     </div>
-                </div>--%>
+                </div>
 
             <%--CANTIDAD--%>
-            <div class="form-horizontal">
+<%--            <div class="form-horizontal">
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Cantidad</asp:Label>
                     <div class="col-md-10">
                         <asp:DropDownList ID="dropCantidad" AutoPostBack="True" CssClass="form-control " OnSelectedIndexChanged="dropCantidad_Selection_Change" runat="server">
-                            <asp:ListItem Selected="True" Value="1"> 1 </asp:ListItem>
+                            <asp:ListItem Selected="True" Value="0"> Seleccione Cantidad </asp:ListItem>
+                            <asp:ListItem Value="1">1</asp:ListItem>
                             <asp:ListItem Value="2">2</asp:ListItem>
                             <asp:ListItem Value="3">3</asp:ListItem>
                             <asp:ListItem Value="4">4</asp:ListItem>
@@ -68,14 +70,14 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <%--TOTAL--%>
             <div class="form-horizontal">
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtTotal" CssClass="col-md-2 control-label">Total</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtTotal" CssClass="form-control " runat="server" Enabled="False" />
+                        <asp:TextBox ID="txtTotal" CssClass="form-control " runat="server" Enabled="False" OnTextChanged="txtTotal_TextChanged" AutoPostBack="True" />
                     </div>
                 </div>
             </div>

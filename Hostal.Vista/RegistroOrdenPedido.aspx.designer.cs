@@ -40,13 +40,13 @@ namespace Hostal.Vista {
         protected global::System.Web.UI.WebControls.DropDownList dropProducto;
         
         /// <summary>
-        /// Control dropCantidad.
+        /// Control inCantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropCantidad;
+        protected global::System.Web.UI.WebControls.TextBox inCantidad;
         
         /// <summary>
         /// Control txtTotal.
