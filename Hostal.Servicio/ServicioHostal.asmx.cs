@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Services;
 using Hostal.Negocio;
 using System.Data;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Hostal.Servicio
 {
@@ -90,23 +92,72 @@ namespace Hostal.Servicio
             }
 
         }
-        public DataTable ListaUsuarios()
+        
+        [WebMethod]
+        public string ListaUsuarios()
         {
             DataTable dt = null;
-
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             try
             {
                 USUARIO usuario = new USUARIO();
                 dt = usuario.ListaUsuarios();
                 System.Diagnostics.Debug.WriteLine("Bien");
-                System.Diagnostics.Debug.WriteLine(dt);
-              
+                
+                //dt.WriteXml();
 
-                return dt;
-            }catch (Exception)
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                System.Diagnostics.Debug.WriteLine(JSONString);
+                System.Diagnostics.Debug.WriteLine(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Mal");
-                return dt;
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaPerfiles()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Perfiles perfiles = new Perfiles();
+                dt = perfiles.ListaPerfiles();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaCargos()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Cargos cargos = new Cargos();
+                dt = cargos.ListaCargos();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
             }
         }
     }
