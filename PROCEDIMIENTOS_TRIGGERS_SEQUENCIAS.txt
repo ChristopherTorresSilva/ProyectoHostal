@@ -83,6 +83,16 @@ VALUES (round(dbms_random.value(10000, 99999)), newCantidad, newTotal, newEmplea
 END;
 
 
+--PROCEDIMIENTO QUE INSERTA PRODUCTO
+CREATE OR REPLACE PROCEDURE INSERTAR_PRODUCTO (newCodigo in NUMERIC, newNombre in VARCHAR2, newPrecio in NUMERIC,newTipoProductoId in NUMERIC, 
+                                               newFamilia in NUMERIC, newDescripcion in VARCHAR2, newStock in NUMERIC, newStockCritico in NUMERIC)
+IS BEGIN
+INSERT INTO PRODUCTO (ID, CODIGO, NOMBRE, PRECIO, TIPO_PRODUCTO_ID, FAMILIA_ID, DESCRIPCION, STOCK, STOCK_CRITICO)
+VALUES (round(dbms_random.value(10000, 99999)), newCodigo, newNombre, newPrecio,newTipoProductoId, 
+                                               newFamilia, newDescripcion, newStock, newStockCritico);
+END;
+
+
 --SECUENCIAS
 
 --TRIGGERS
