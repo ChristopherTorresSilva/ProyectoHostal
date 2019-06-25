@@ -41,9 +41,9 @@ namespace Hostal.Vista
             comando = new OracleCommand("SELECT * FROM PERFIL", conexion);
             da = new OracleDataAdapter(comando);
             //System.Diagnostics.Debug.WriteLine(topTitle + " " + subTitle);
-
             dt = new DataSet();
             da.Fill(dt);
+
             dropPerfil.DataTextField = "NOMBRE";
             dropPerfil.DataValueField = "ID";
             dropPerfil.DataSource = dt;

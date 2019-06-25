@@ -1,13 +1,17 @@
 ﻿using Oracle.DataAccess.Client;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Hostal.Negocio
 {
-    public class OrdenPedido
+    public class Recepcion
     {
         OracleConnection OracleCon = new OracleConnection();
-        public OrdenPedido()
+        public Recepcion()
         {
             try
             {
@@ -22,7 +26,7 @@ namespace Hostal.Negocio
 
         }
 
-        public OrdenPedido(string sqlcon)
+        public Recepcion(string sqlcon)
         {
             try
             {
@@ -35,36 +39,28 @@ namespace Hostal.Negocio
             }
         }
 
-        public bool CreateOrdenPedido(int newCantidad, int newTotal, int newEmpleadoId, int newProveedorId, int newProductoId)
+        public bool CreateRecepcionProducto(long newCodigo, string newNombre, int newPrecio, int newTipoProductoId, int newFamilia, string newDescripcion, int newStock, int newStockCritico)
         {
             //System.Diagnostics.Debug.WriteLine(userN);
             DataTable dt = new DataTable();
             try
             {
-                //PRUEBA PARA OBTENER PRECIO
-                //OracleCon.Open();
-                //OracleCommand prueba = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID = :ID", OracleCon);
-
-                //
                 OracleCommand _OracleCommand = new OracleCommand();
-                _OracleCommand.CommandText = "INSERTAR_ORDEN_PEDIDO";
+                _OracleCommand.CommandText = "INSERTAR_PRODUCTO";
                 _OracleCommand.Connection = OracleCon;
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
-
-                //OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPLEADO", OracleCon);
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
-                _OracleCommand.Parameters.Add("newCantidad", OracleDbType.Int32).Value = newCantidad;
-                _OracleCommand.Parameters.Add("newTotal", OracleDbType.Int32).Value = newTotal;
-                _OracleCommand.Parameters.Add("newEmpleadoId", OracleDbType.Int32).Value = newEmpleadoId;
-                _OracleCommand.Parameters.Add("newProveedorId", OracleDbType.Int32).Value = newProveedorId;
-                _OracleCommand.Parameters.Add("newProductoId", OracleDbType.Int32).Value = newProductoId;
+                _OracleCommand.Parameters.Add("newCodigo", OracleDbType.Long).Value = newCodigo;
+                _OracleCommand.Parameters.Add("newNombre", OracleDbType.Varchar2).Value = newNombre;
+                _OracleCommand.Parameters.Add("newPrecio", OracleDbType.Int32).Value = newPrecio;
+                _OracleCommand.Parameters.Add("newTipoProductoId", OracleDbType.Int32).Value = newTipoProductoId;
+                _OracleCommand.Parameters.Add("newFamilia", OracleDbType.Int32).Value = newFamilia;
+                _OracleCommand.Parameters.Add("newDescripcion", OracleDbType.Varchar2).Value = newDescripcion;
+                _OracleCommand.Parameters.Add("newStock", OracleDbType.Int32).Value = newStock;
+                _OracleCommand.Parameters.Add("newStockCritico", OracleDbType.Int32).Value = newStockCritico;
 
-
-
-                //_OracleCommand.ExecuteNonQuery();
                 OracleCon.Open();
                 OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
-                //_OracleDataAdapter.SelectCommand = _OracleCommand;
                 _OracleDataAdapter.Fill(dt);
                 System.Diagnostics.Debug.WriteLine(dt.Rows.Count);
                 OracleCon.Close();
@@ -74,10 +70,8 @@ namespace Hostal.Negocio
             }
             catch (Exception ex)
             {
-                //System.Diagnostics.Debug.WriteLine(userN);
                 return false;
             }
         }
-
     }
 }

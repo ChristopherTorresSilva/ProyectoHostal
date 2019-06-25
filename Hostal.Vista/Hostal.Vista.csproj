@@ -220,6 +220,7 @@
     <Content Include="img\banner.jpg" />
     <Content Include="img\minuta.jpg" />
     <Content Include="ListadoUsuarios.aspx" />
+    <Content Include="RecepcionProducto.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
     <Content Include="RegistrarEmpresa.aspx" />
     <Content Include="RegistrarHabitacion.aspx" />
@@ -430,6 +431,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecepcionProducto.aspx.cs">
+      <DependentUpon>RecepcionProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecepcionProducto.aspx.designer.cs">
+      <DependentUpon>RecepcionProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarEmpleado.aspx.cs">
       <DependentUpon>RegistrarEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -497,6 +505,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hostal.Negocio\Hostal.Negocio.csproj">
