@@ -160,5 +160,185 @@ namespace Hostal.Servicio
                 return "Vacío";
             }
         }
+
+        [WebMethod]
+        public string ListaRubros()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Rubros rubros = new Rubros();
+                dt = rubros.ListaRubros();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public bool CreatePlatos(string newnombre, int newtiposervicio)
+        {
+            Boolean _resp = false;
+            try
+            {
+                Platos platos = new Platos();
+                _resp = platos.CreatePlatos(newnombre, newtiposervicio);
+                return _resp;
+            }
+            catch (Exception)
+            {
+                return _resp;
+            }
+
+        }
+
+        [WebMethod]
+        public string ListaServicios()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                TipoServicio rubros = new TipoServicio();
+                dt = rubros.ListaServicios();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaProveedores()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                PROVEEDOR proveedores = new PROVEEDOR();
+                dt = proveedores.ListaProveedor();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaProductos()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Productos productos = new Productos();
+                dt = productos.ListaProductos();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public bool CreateRecepcionProducto(string productoId, string newNombre, int newPrecio, int newTipoProductoId, int newFamilia, string newDescripcion, int newStock, int newStockCritico, string
+            fecha)
+        {
+            Boolean _resp = false;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Recepcion recepcion = new Recepcion();
+                _resp = recepcion.CreateRecepcionProducto(productoId, newNombre, newPrecio, newTipoProductoId,
+                    newFamilia, newDescripcion, newStock, newStockCritico, fecha);
+                return _resp;
+            }
+            catch (Exception ex)
+            {
+                
+                return _resp;
+            }
+        }
+
+        [WebMethod]
+        public bool CreateOrdenPedido(int newCantidad, int newTotal, int newEmpleadoId, int newProveedorId, int newProductoId)
+        {
+            Boolean _resp = false;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                OrdenPedido orden = new OrdenPedido();
+                _resp = orden.CreateOrdenPedido(newCantidad, newTotal, newEmpleadoId, newProveedorId, newProductoId);
+                return _resp;
+            }
+            catch (Exception ex)
+            {
+
+                return _resp;
+            }
+        }
+
+        [WebMethod]
+        public string ListaFamilias()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                Familia familias = new Familia();
+                dt = familias.ListaFamilia();
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaTipoProductos()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                TipoProducto tipo = new TipoProducto();
+                dt = tipo.ListaTipoProducto();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
     }
 }
