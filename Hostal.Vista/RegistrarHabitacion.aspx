@@ -7,8 +7,9 @@
             <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reserva Habitación</h3>
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Image ID="Image1" runat="server" Height="113px" ImageUrl="~/img/habitacionDoble.jpg" Width="717px" />
+            <asp:Image ID="Image1" runat="server" Height="130px" ImageUrl="~/img/habitacionDoble.jpg" Width="717px" />
             <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <section>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="dropHuesped"  CssClass="col-md-2 control-label">Tipo de Huesped:</asp:Label>
@@ -38,29 +39,26 @@
                       </div>
                 </div>
                 <div class="form-group">
-                   <asp:Label runat="server" AssociatedControlID="txtNombre"  CssClass="col-md-2 control-label">Nombre:</asp:Label>
-                     <div class="col-md-10">
-                        <asp:TextBox ID="txtNombre" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
-                        <br />
-                     </div>
-                     <br />
+                        <asp:Label runat="server" AssociatedControlID="txtNombre" CssClass="col-md-2 control-label">Nombre:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombre" CssClass="text-danger" ErrorMessage="El campo de nombre es obligatorio." />
+                        </div>
+               </div>
+                <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="txtApellido" CssClass="col-md-2 control-label">Apellido:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtApellido" CssClass="text-danger" ErrorMessage="El campo de apellido es obligatorio." />
+                        </div>
                 </div>
                 <div class="form-group">
-                   <asp:Label runat="server" AssociatedControlID="txtApellido"  CssClass="col-md-2 control-label">Apellido:</asp:Label>
-                     <div class="col-md-10">
-                        <asp:TextBox ID="txtApellido" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
-                        <br />
-                     </div>
-                     <br />
-                </div>
-                <div class="form-group">
-                   <asp:Label runat="server" AssociatedControlID="txtRut"  CssClass="col-md-2 control-label">Rut:</asp:Label>
-                     <div class="col-md-10">
-                        <asp:TextBox ID="txtRut" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
-                        <br />
-                     </div>
-                     <br />
-                </div>
+                        <asp:Label runat="server" AssociatedControlID="txtRut" CssClass="col-md-2 control-label">Rut:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="txtRut" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtRut" CssClass="text-danger" ErrorMessage="El campo de rut  es obligatorio." />
+                        </div>
+               </div>
                 <div class="form-group">
                   <asp:Label runat="server" AssociatedControlID="dropEmpresa" CssClass="col-md-2 control-label">Empresa:</asp:Label>
                    <div class="col-md-10">
@@ -86,14 +84,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                   <asp:Label runat="server" AssociatedControlID="txtPrecio"  CssClass="col-md-2 control-label" Visible="true">Precio:</asp:Label>
-                     <div class="col-md-10">
-                        <asp:TextBox ID="txtPrecio" runat="server" Width="1473px" Enabled="False"></asp:TextBox>
-                        <br />
-                     </div>
-                     <br />
-                </div>
-
+                        <asp:Label runat="server" AssociatedControlID="txtPrecio" CssClass="col-md-2 control-label">Precio:</asp:Label>
+                        <div class="col-md-10">
+                            <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPrecio" CssClass="text-danger" ErrorMessage="El campo de Precio es obligatorio." />
+                        </div>
+               </div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
                 <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>
                  <div class="form-group">

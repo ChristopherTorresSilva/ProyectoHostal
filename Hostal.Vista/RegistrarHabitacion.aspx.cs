@@ -116,7 +116,7 @@ namespace Hostal.Vista
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(int.Parse(dropHuesped.SelectedItem.Value));
+            /*System.Diagnostics.Debug.WriteLine(int.Parse(dropHuesped.SelectedItem.Value));*/
             try
             {
                 int tipoCama = int.Parse(dropCama.SelectedValue);
