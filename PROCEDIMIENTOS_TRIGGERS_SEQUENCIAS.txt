@@ -92,6 +92,13 @@ VALUES (round(dbms_random.value(10000, 99999)), newCodigo, newNombre, newPrecio,
                                                newFamilia, newDescripcion, newStock, newStockCritico);
 END;
 
+--Alteracion de la tabla producto para agregar DESCRIPCION STOCK y STOCK_CRITICO
+ALTER TABLE PRODUCTO ADD DESCRIPCION VARCHAR2(100);
+
+ALTER TABLE PRODUCTO ADD STOCK NUMBER(10);
+
+ALTER TABLE PRODUCTO ADD STOCK_CRITICO NUMBER(10);
+
 
 --SECUENCIAS
 
