@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Hostal.Negocio
 {
-    public class OrdenPedido
+    public class OrdenPedido  
     {
         OracleConnection OracleCon = new OracleConnection();
         public OrdenPedido()
@@ -78,6 +78,41 @@ namespace Hostal.Negocio
                 return false;
             }
         }
+
+        public DataTable ListaOrdenPedido()
+        {
+
+            //System.Diagnostics.Debug.WriteLine(userN);
+            DataTable dt = new DataTable();
+            try
+            {
+
+                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter();
+                OracleCommand _OracleCommand = new OracleCommand();
+
+                _OracleCommand.CommandText = "seleccionaOrdenPedido";
+                _OracleCommand.Connection = OracleCon;
+                _OracleCommand.CommandType = CommandType.StoredProcedure;
+
+                _OracleCommand.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                OracleCon.Open();
+                _OracleDataAdapter.SelectCommand = _OracleCommand;
+                _OracleDataAdapter.Fill(dt);
+                OracleCon.Close();
+
+                return dt;
+            }
+            catch (Exception)
+            {
+                //System.Diagnostics.Debug.WriteLine(userN);
+                return dt;
+            }
+        }
+
+
+
+
 
     }
 }
