@@ -13,6 +13,15 @@ namespace Hostal.Vista {
     public partial class RegistroOrdenPedido {
         
         /// <summary>
+        /// Control Image1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Image1;
+        
+        /// <summary>
         /// Control dropEmpleado.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace Hostal.Vista {
         protected global::System.Web.UI.WebControls.DropDownList dropProveedor;
         
         /// <summary>
-        /// Control dropProducto.
+        /// Control txtProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropProducto;
+        protected global::System.Web.UI.WebControls.TextBox txtProducto;
         
         /// <summary>
         /// Control inCantidad.
@@ -47,15 +56,6 @@ namespace Hostal.Vista {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox inCantidad;
-        
-        /// <summary>
-        /// Control txtTotal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotal;
         
         /// <summary>
         /// Control lblErrorMsg.

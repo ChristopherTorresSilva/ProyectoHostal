@@ -50,19 +50,7 @@ namespace Hostal.Vista
                 dropEmpleado.DataBind();
                 emptyItem = new ListItem("", "");
                 dropEmpleado.Items.Insert(0, emptyItem);
-
-
-                comando = new OracleCommand("SELECT * FROM PRODUCTO", conexion);
-                da = new OracleDataAdapter(comando);
-                dt = new DataSet();
-                da.Fill(dt);
-
-                dropProducto.DataTextField = "NOMBRE";
-                dropProducto.DataValueField = "ID";
-                dropProducto.DataSource = dt;
-                dropProducto.DataBind();
-                emptyItem = new ListItem("", "");
-                dropProducto.Items.Insert(0, emptyItem);
+                
             }
             catch (Exception ex)
             {
@@ -101,31 +89,29 @@ namespace Hostal.Vista
 
         protected void inCantidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var precioId = dropProducto.SelectedItem.Value;
-            OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId, conexion);
-            comando.Parameters.Add(precioId, txtTotal.Text);
-            conexion.Open();
-            OracleDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                string op = registro["PRECIO"].ToString();
-                int tot = int.Parse(op) * int.Parse(inCantidad.Text);
-                txtTotal.Text = tot.ToString();
-            }
-            conexion.Close();
+            //OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + precioId, conexion);
+            //comando.Parameters.Add(precioId, txtTotal.Text);
+            //conexion.Open();
+            //OracleDataReader registro = comando.ExecuteReader();
+            //if (registro.Read())
+            //{
+            //    string op = registro["PRECIO"].ToString();
+            //    int tot = int.Parse(op) * int.Parse(inCantidad.Text);
+            //    txtTotal.Text = tot.ToString();
+            //}
+            //conexion.Close();
         }
 
         protected void btnCrearOrden_Click(object sender, EventArgs e)
         {
             int cantidad = int.Parse(inCantidad.Text);
-            int total = int.Parse(txtTotal.Text);
             int empleado = int.Parse(dropEmpleado.SelectedValue);
             int proveedor = int.Parse(dropProveedor.SelectedValue);
-            int producto = int.Parse(dropProducto.SelectedValue);
+            string producto = txtProducto.Text;
             try
             {
                 OrdenPedido ordenPedido = new OrdenPedido();
-                if (ordenPedido.CreateOrdenPedido(cantidad, total, empleado, proveedor, producto))
+                if (ordenPedido.CreateOrdenPedido(cantidad, empleado, proveedor, producto))
                 {
                     lblErrorMsg.Text = "Se ha registrado su orden de pedido";
                 }

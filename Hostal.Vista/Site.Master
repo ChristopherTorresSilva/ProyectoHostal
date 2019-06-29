@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title><%: Page.Title %> - Doña Clarita</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -20,27 +20,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
+    <style type="text/css">
+        body
+        {
+            background-image: url(img/fondo.jpg);
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+                #nav {
+                    width: auto;
+                    margin: auto;
+                }
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: grey;
-  text-decoration: none;
-}
+                #nav ul {
+                    padding: 0;
+                    list-style: none;
+                }
 
+                #nav ul li {
+                    float: left;
+                    text-align: center;
+                    width: 120px;
+                    margin: 1px;
+                }
 
-.navbar a:hover, .subnav:hover .subnavbtn {
-  background-color: whitesmoke;
-  text-shadow: inherit;
-}
-</style>
-    
+                #nav ul li a 
+                {
+                    font-family:Impact;
+                    font-size: 15px;
+                    color: black;
+                    text-decoration: none;
+                    background: #FFFFFF;
+                    display: block;
+                    padding: 10px;
+                }
+
+                #nav ul li a:hover
+                {
+                     background: #EF9D9D;
+                     color: black;
+                }
+
+                #nav ul li ul
+                {
+                    display: none;
+                }
+
+                #nav ul li:hover ul
+                {
+                    display: block;
+                }
+
+    </style>
 </head>
+
+
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
@@ -63,74 +97,77 @@ body {
                 <%--Scripts del sitio--%>
             </Scripts>
         </asp:ScriptManager>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+        <div id="nav">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Desplegar navegación</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Hostal Doña Clarita</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                <div id="nav">
+                    <ul>
                         <li><a runat="server" href="~/">Inicio</a></li>
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                         <li><a runat="server" href="~/Contact">Contacto</a></li>
+
                         <% if (Session["Username"] != null)
                             { %>
-                        <li class="dropdown"><a href="#" class="dropdown-menu" data-toggle="dropdown">Registro<b class="caret"></b></a>
-                            <ul >
+                        <li><a href="#">Registro</a>
+                            <ul>
                                 <li><a runat="server" href="~/RegistrarEmpresa">Registrar Empresa</a></li>
                                 <li><a runat="server" href="~/RegistrarEmpleado">Registrar Empleado</a></li>
                                 <li><a runat="server" href="~/RegistrarProveedor">Registrar Proveedor</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-menu" data-toggle="dropdown">Comedor<b class="caret"></b></a>
-                            <ul class="dropdown">
-                                <li><a runat="server" href="~/RegistrarPlatos">Registro de Platos</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-menu" data-toggle="dropdown">Ordenes<b class="caret"></b></a>
-                            <ul class="dropdown">
-                                <li><a runat="server" href="~/RegistroOrdenPedido">Registro Orden de Pedido</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="#" class="dropdown-menu" data-toggle="dropdown">Recepción<b class="caret"></b></a>
-                            <ul class="dropdown">
-                                <li><a runat="server" href="~/RecepcionProducto">Recepción Producto</a></li>
+                                 <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
                             </ul>
                         </li>
 
-                        <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
+                         <li><a href="#">Comedor</a>
+                            <ul>
+                                <li><a runat="server" href="~/RegistrarPlatos">Registro de Platos</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Ordenes</a>
+                            <ul>
+                                <li><a runat="server" href="~/RegistroOrdenPedido">Registro Orden de Pedido</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Recepción</a>
+                            <ul>
+                                <li><a runat="server" href="~/RecepcionProducto">Recepción Producto</a></li>
+                            </ul>
+                        </li>
                         <% } %>
                     </ul>
-                    <% if (Session["Username"] == null)
+
+
+                  
+                        <% if (Session["Username"] != null)
                         { %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
-                    </ul>
-                    <% } %>
-                    <% if (Session["Username"] != null)
+                        <ul>
+                          <asp:Label runat="server" ID="lblUSerDetails"></asp:Label>
+                          <li><a runat="server" href="~/Account/Logout"><span></span>Cerrar Sesion</a></li>
+                        </ul>
+                        <% } %>
+
+                        <% if (Session["Username"] == null)
                         { %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <asp:Label runat="server" ID="lblUSerDetails"></asp:Label>
-                        <li><a runat="server" href="~/Account/Logout"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesion</a></li>
-                    </ul>
-                    <% } %>
+                          <ul >
+                        <li><a runat="server" href="~/Account/Login"><span></span>Iniciar sesión</a></li>
+                        </ul>
+                        <% } %>
                 </div>
             </div>
         </div>
+
+
+
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Hostal Doña Clarita</p>
             </footer>
-        </div>	
+        </div>
     </form>
 </body>
 </html>

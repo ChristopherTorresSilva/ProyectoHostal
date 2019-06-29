@@ -2,7 +2,15 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="form-group col-lg-12">
+            <style type="text/css">
+        #x
+        {
+                    font-family:Arial;
+                    font-size: 15px;
+                    color: white;
+        }
+    </style>
+    <div id="x" class="form-group col-lg-12">
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recepción Productos</h3>
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -10,13 +18,22 @@
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="form-group">
+            <%--Orden de Pedido--%>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="dropOrden" CssClass="col-md-2 control-label">Tipo de Producto</asp:Label>
+                    <div class="col-md-10">
+                        <asp:DropDownList ID="dropOrden" runat="server" CssClass="form-control ">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+            </div>
             <%--NOMBRE DEL PRODUCTO--%>
             <div class="form-horizontal">
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="dropProducto" CssClass="col-md-2 control-label">Producto</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="txtProducto" CssClass="col-md-2 control-label">Producto</asp:Label>
                     <div class="col-md-10">
-                        <asp:DropDownList ID="dropProducto" runat="server" CssClass="form-control " OnSelectedIndexChanged="dropProducto_SelectedIndexChanged" AutoPostBack="True">
-                        </asp:DropDownList>
+                        <asp:TextBox ID="txtProducto" CssClass="form-control " runat="server" />
                     </div>
                 </div>
             </div>
@@ -26,7 +43,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtPrecio" CssClass="col-md-2 control-label">Precio unitario</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtPrecio" CssClass="form-control " runat="server" Enabled="False" />
+                        <asp:TextBox ID="txtPrecio" CssClass="form-control " runat="server" />
                     </div>
                 </div>
             </div>
@@ -36,7 +53,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="dropTipoProducto" CssClass="col-md-2 control-label">Tipo de Producto</asp:Label>
                     <div class="col-md-10">
-                        <asp:DropDownList ID="dropTipoProducto" runat="server" CssClass="form-control " OnSelectedIndexChanged="dropTipoProducto_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList ID="dropTipoProducto" runat="server" CssClass="form-control ">
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -47,7 +64,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="dropFamilia" CssClass="col-md-2 control-label">Familia de Producto</asp:Label>
                     <div class="col-md-10">
-                        <asp:DropDownList ID="dropFamilia" runat="server" CssClass="form-control " OnSelectedIndexChanged="dropFamilia_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:DropDownList ID="dropFamilia" runat="server" CssClass="form-control " >
                         </asp:DropDownList>
                     </div>
                 </div>
@@ -58,17 +75,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtDescripcion" CssClass="col-md-2 control-label">Descripcion</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtDescripcion" CssClass="form-control " runat="server" Enabled="False" />
-                    </div>
-                </div>
-            </div>
-
-            <%--CANTIDAD--%>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="txtCantidad" CssClass="col-md-2 control-label">Cantidad de Productos</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox ID="txtCantidad" CssClass="form-control " runat="server" AutoPostBack="True" TextMode="Number" OnTextChanged="txtCantidad_TextChanged" />
+                        <asp:TextBox ID="txtDescripcion" CssClass="form-control " runat="server" />
                     </div>
                 </div>
             </div>
@@ -78,7 +85,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtStock" CssClass="col-md-2 control-label">Stock</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtStock" CssClass="form-control " runat="server" AutoPostBack="True" TextMode="Number" Enabled="False" />
+                        <asp:TextBox ID="txtStock" CssClass="form-control " runat="server" TextMode="Number" />
                     </div>
                 </div>
             </div>
@@ -88,7 +95,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtStockCritico" CssClass="col-md-2 control-label">Stock Crítico</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtStockCritico" CssClass="form-control " runat="server" AutoPostBack="True" TextMode="Number" Enabled="False" />
+                        <asp:TextBox ID="txtStockCritico" CssClass="form-control " runat="server" TextMode="Number" />
                     </div>
                 </div>
             </div>
@@ -98,7 +105,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtFecha" CssClass="col-md-2 control-label">Fecha de Vencimiento</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtFecha" CssClass="form-control " runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="txtFecha_TextChanged" />
+                        <asp:TextBox ID="txtFecha" CssClass="form-control " runat="server" TextMode="Date" />
                     </div>
                 </div>
             </div>
@@ -108,7 +115,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="txtCodigo" CssClass="col-md-2 control-label">Código</asp:Label>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txtCodigo" CssClass="form-control " runat="server" AutoPostBack="True" />
+                        <asp:TextBox ID="txtCodigo" CssClass="form-control " runat="server" Enabled="false" />
                     </div>
                 </div>
             </div>

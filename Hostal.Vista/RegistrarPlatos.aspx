@@ -1,7 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarPlatos.aspx.cs" Inherits="Hostal.Vista.RegistrarPlatos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="form-group col-lg-12">
+            <style type="text/css">
+        #x
+        {
+                    font-family:Arial;
+                    font-size: 15px;
+                    color: white;
+        }
+    </style>
+    <div id="x" class="form-group col-lg-12">
         <div class="form-group">
             </br></br></br></br>
             

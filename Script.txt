@@ -123,10 +123,9 @@ ALTER TABLE orden_compra ADD CONSTRAINT orden_compra_pk PRIMARY KEY ( id );
 CREATE TABLE orden_pedido (
     id             NUMBER(10) NOT NULL,
     cantidad       NUMBER(3) NOT NULL,
-    total          NUMBER(10) NOT NULL,
     empleado_id    NUMBER(10) NOT NULL,
     proveedor_id   NUMBER(10) NOT NULL,
-    producto_id    NUMBER(10) NOT NULL
+    producto       VARCHAR2(30) NOT NULL
 );
 
 ALTER TABLE orden_pedido ADD CONSTRAINT orden_pedido_pk PRIMARY KEY ( id );
@@ -256,9 +255,6 @@ ALTER TABLE orden_pedido
     ADD CONSTRAINT orden_pedido_empleado_fk FOREIGN KEY ( empleado_id )
         REFERENCES empleado ( id );
 
-ALTER TABLE orden_pedido
-    ADD CONSTRAINT orden_pedido_producto_fk FOREIGN KEY ( producto_id )
-        REFERENCES producto ( id );
 
 ALTER TABLE orden_pedido
     ADD CONSTRAINT orden_pedido_proveedor_fk FOREIGN KEY ( proveedor_id )

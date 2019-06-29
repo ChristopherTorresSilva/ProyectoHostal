@@ -1,7 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroOrdenPedido.aspx.cs" Inherits="Hostal.Vista.RegistroOrdenPedido" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="form-group col-lg-12">
+            <style type="text/css">
+        #x
+        {
+                    font-family:Arial;
+                    font-size: 15px;
+                    color: white;
+        }
+    </style>
+    <div id="x" class="form-group col-lg-12">
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Registro Orden Pedido</h3>
             <br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -34,10 +42,9 @@
             <%--PRODUCTO--%>
             <div class="form-horizontal">
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="dropProducto" CssClass="col-md-2 control-label">Producto</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="txtProducto" CssClass="col-md-2 control-label">Producto</asp:Label>
                     <div class="col-md-10">
-                        <asp:DropDownList ID="dropProducto" runat="server" CssClass="form-control " OnSelectedIndexChanged="dropProducto_SelectedIndexChanged" AutoPostBack="True">
-                        </asp:DropDownList>
+                        <asp:TextBox ID="txtProducto" CssClass="form-control " runat="server" />
                     </div>
                 </div>
             </div>
@@ -74,16 +81,6 @@
                     </div>
                 </div>
             </div>--%>
-
-            <%--TOTAL--%>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="txtTotal" CssClass="col-md-2 control-label">Total</asp:Label>
-                    <div class="col-md-10">
-                        <asp:TextBox ID="txtTotal" CssClass="form-control " runat="server" Enabled="False" OnTextChanged="txtTotal_TextChanged" AutoPostBack="True" />
-                    </div>
-                </div>
-            </div>
 
              <%--MENSAJE ERROR--%>
                 <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>

@@ -39,9 +39,22 @@ namespace Hostal.Negocio
             }
         }
 
-        public bool CreateRecepcionProducto(long newCodigo, string newNombre, int newPrecio, int newTipoProductoId, int newFamilia, string newDescripcion, int newStock, int newStockCritico)
+        public bool CreateRecepcionProducto(string newNombre, int newPrecio, int newTipoProductoId, int newFamilia, string newDescripcion, int newStock, int newStockCritico, string fecha, int proveedorId)
         {
-            //System.Diagnostics.Debug.WriteLine(userN);
+
+            //OracleCommand comando = new OracleCommand("SELECT PROVEEDOR_ID FROM ORDEN_PEDIDO WHERE PRODUCTO_ID =" + prov, conexion);
+            //comando.Parameters.Add(prov, provId);
+            //conexion.Open();
+            //OracleDataReader registro = comando.ExecuteReader();
+           
+                string provId = proveedorId.ToString().Substring(0, 1);
+                string tProdId = newTipoProductoId.ToString().Substring(0, 1);
+                string fam = newFamilia.ToString().Substring(0, 1);
+                string fech = fecha.Replace("-", "").Substring(0, 8);
+                string exp = provId + fam + fech + tProdId;
+            
+
+            System.Diagnostics.Debug.WriteLine(exp);
             DataTable dt = new DataTable();
             try
             {
@@ -50,7 +63,7 @@ namespace Hostal.Negocio
                 _OracleCommand.Connection = OracleCon;
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
-                _OracleCommand.Parameters.Add("newCodigo", OracleDbType.Long).Value = newCodigo;
+                _OracleCommand.Parameters.Add("newCodigo", OracleDbType.Long).Value = exp;
                 _OracleCommand.Parameters.Add("newNombre", OracleDbType.Varchar2).Value = newNombre;
                 _OracleCommand.Parameters.Add("newPrecio", OracleDbType.Int32).Value = newPrecio;
                 _OracleCommand.Parameters.Add("newTipoProductoId", OracleDbType.Int32).Value = newTipoProductoId;

@@ -26,23 +26,13 @@ namespace Hostal.Vista
             {
                 if (conexion.State == ConnectionState.Closed)
                     conexion.Open();
-
-                OracleCommand comando = new OracleCommand("SELECT * FROM PRODUCTO", conexion);
-                OracleDataAdapter da = new OracleDataAdapter(comando);
+                
                 //System.Diagnostics.Debug.WriteLine(topTitle + " " + subTitle);
 
                 DataSet dt = new DataSet();
-                da.Fill(dt);
-                dropProducto.DataTextField = "NOMBRE";
-                dropProducto.DataValueField = "ID";
-                dropProducto.DataSource = dt;
-                dropProducto.DataBind();
-                ListItem emptyItem = new ListItem("", "");
-                dropProducto.Items.Insert(0, emptyItem);
 
-
-                comando = new OracleCommand("SELECT * FROM TIPO_PRODUCTO", conexion);
-                da = new OracleDataAdapter(comando);
+                OracleCommand comando = new OracleCommand("SELECT * FROM TIPO_PRODUCTO", conexion);
+                OracleDataAdapter da = new OracleDataAdapter(comando);
                 dt = new DataSet();
                 da.Fill(dt);
 
@@ -50,7 +40,7 @@ namespace Hostal.Vista
                 dropTipoProducto.DataValueField = "ID";
                 dropTipoProducto.DataSource = dt;
                 dropTipoProducto.DataBind();
-                emptyItem = new ListItem("", "");
+                ListItem emptyItem = new ListItem("", "");
                 dropTipoProducto.Items.Insert(0, emptyItem);
 
 
@@ -65,6 +55,18 @@ namespace Hostal.Vista
                 dropFamilia.DataBind();
                 emptyItem = new ListItem("", "");
                 dropFamilia.Items.Insert(0, emptyItem);
+
+                comando = new OracleCommand("SELECT * FROM ORDEN_PEDIDO", conexion);
+                da = new OracleDataAdapter(comando);
+                dt = new DataSet();
+                da.Fill(dt);
+
+                dropOrden.DataTextField = "ID";
+                dropOrden.DataValueField = "PROVEEDOR_ID";
+                dropOrden.DataSource = dt;
+                dropOrden.DataBind();
+                emptyItem = new ListItem("", "");
+                dropOrden.Items.Insert(0, emptyItem);
             }
             catch (Exception ex)
             {
@@ -86,55 +88,6 @@ namespace Hostal.Vista
             //txtRut.Text = string.Empty;
         }
 
-        protected void dropProducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var idPrecio = dropProducto.SelectedItem.Value;
-            OracleCommand comando = new OracleCommand("SELECT PRECIO FROM PRODUCTO WHERE ID =" + idPrecio, conexion);
-            comando.Parameters.Add(idPrecio, txtPrecio.Text);
-            conexion.Open();
-            OracleDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                txtPrecio.Text = registro["PRECIO"].ToString();
-            }
-            conexion.Close();
-        }
-
-        protected void dropTipoProducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void dropFamilia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var idDescripcion = dropProducto.SelectedItem.Value;
-            OracleCommand comando = new OracleCommand("SELECT DESCRIPCION FROM PRODUCTO WHERE ID =" + idDescripcion, conexion);
-            comando.Parameters.Add(idDescripcion, txtDescripcion.Text);
-            conexion.Open();
-            OracleDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                txtDescripcion.Text = registro["DESCRIPCION"].ToString();
-            }
-            conexion.Close();
-        }
-
-        protected void txtCantidad_TextChanged(object sender, EventArgs e)
-        {
-            var idStock = dropProducto.SelectedItem.Value;
-            OracleCommand comando = new OracleCommand("SELECT STOCK_CRITICO FROM PRODUCTO WHERE ID =" + idStock, conexion);
-            comando.Parameters.Add(idStock, txtStock.Text);
-            conexion.Open();
-            OracleDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                int va = int.Parse(registro["STOCK_CRITICO"].ToString());
-                int va2 = int.Parse(txtCantidad.Text) + va;
-                txtStock.Text = va2.ToString();
-                txtStockCritico.Text = registro["STOCK_CRITICO"].ToString();
-            }
-            conexion.Close();
-        }
 
         protected void txtFecha_TextChanged(object sender, EventArgs e)
         {
@@ -144,38 +97,27 @@ namespace Hostal.Vista
             string fam = "";
             string fech = "";
             string exp = "";
-            var prov = dropProducto.SelectedItem.Value;
-            OracleCommand comando = new OracleCommand("SELECT PROVEEDOR_ID FROM ORDEN_PEDIDO WHERE PRODUCTO_ID =" + prov, conexion);
-            comando.Parameters.Add(prov, provId);
-            conexion.Open();
-            OracleDataReader registro = comando.ExecuteReader();
-            if (registro.Read())
-            {
-                provId = (registro["PROVEEDOR_ID"].ToString()).Substring(0,1);
-                tProdId = dropTipoProducto.SelectedValue.Substring(0, 1);
-                fam = dropFamilia.SelectedValue.Substring(0, 1);
-                fech = txtFecha.Text.Replace("-", "").Substring(0, 8);
-                exp = provId + fam + fech + tProdId;
-                txtCodigo.Text = exp;
-            }
+            
             conexion.Close();
         }
 
         protected void btnCrearRecepcionProducto_Click(object sender, EventArgs e)
         {
-            long codigo = long.Parse(txtCodigo.Text);
-            string nombre = dropProducto.Text;
+            
+            string nombre = txtProducto.Text;
             int precio = int.Parse(txtPrecio.Text);
             int tipoProductoId = int.Parse(dropTipoProducto.SelectedValue);
             int familiaId = int.Parse(dropFamilia.SelectedValue);
             string descripcion = txtDescripcion.Text;
             int stock = int.Parse(txtStock.Text);
             int stockCritico = int.Parse(txtStockCritico.Text);
+            string fecha = txtFecha.Text;
+            int proveedorId = int.Parse(dropOrden.SelectedValue);
 
             try
             {
                 Recepcion recepcion = new Recepcion();
-                if (recepcion.CreateRecepcionProducto(codigo, nombre, precio, tipoProductoId, familiaId, descripcion, stock, stockCritico))
+                if (recepcion.CreateRecepcionProducto(nombre, precio, tipoProductoId, familiaId, descripcion, stock, stockCritico, fecha, proveedorId))
                 {
                     lblErrorMsg.Text = "Se han registrado los productos";
                 }

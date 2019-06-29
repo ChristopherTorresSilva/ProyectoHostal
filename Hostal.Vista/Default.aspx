@@ -2,8 +2,24 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <h1>Hostal Doña Clarita</h1>
-        <img src="img/banner.jpg"/>
+    <style type="text/css">
+        #x {
+            margin: auto;
+            display: block;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: Arial;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+
+
+    <div class="container">
+        <div id="">
+            <h3 id="x" >Hostal Doña Clarita</h3>
+            <img id="x" src="img/banner.jpg" />
+        </div>
     </div>
+
 </asp:Content>

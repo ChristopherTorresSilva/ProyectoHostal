@@ -215,10 +215,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="img\fondo.jpg" />
     <Content Include="img\habitacionDoble.jpg" />
     <Content Include="home.aspx" />
     <Content Include="img\banner.jpg" />
     <Content Include="img\minuta.jpg" />
+    <Content Include="ListadoOrdenPedido.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="RecepcionProducto.aspx" />
     <Content Include="RegistrarEmpleado.aspx" />
@@ -421,6 +423,13 @@
     </Compile>
     <Compile Include="home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoOrdenPedido.aspx.cs">
+      <DependentUpon>ListadoOrdenPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoOrdenPedido.aspx.designer.cs">
+      <DependentUpon>ListadoOrdenPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuarios.aspx.cs">
       <DependentUpon>ListadoUsuarios.aspx</DependentUpon>

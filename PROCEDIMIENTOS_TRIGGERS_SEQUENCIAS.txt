@@ -76,10 +76,10 @@ END;
 
 
 --PROCEDIMIENTO QUE INSERTA UNA ORDEN DE PEDIDO
-CREATE OR REPLACE PROCEDURE INSERTAR_ORDEN_PEDIDO (newCantidad in NUMERIC, newTotal in NUMERIC, newEmpleadoId in NUMERIC, newProveedorId in Numeric, newProductoId in NUMERIC)
+create or replace PROCEDURE INSERTAR_ORDEN_PEDIDO (newCantidad in NUMERIC, newEmpleadoId in NUMERIC, newProveedorId in Numeric, newProducto in VARCHAR)
 IS BEGIN
-INSERT INTO ORDEN_PEDIDO (ID, CANTIDAD, TOTAL, EMPLEADO_ID, PROVEEDOR_ID, PRODUCTO_ID)
-VALUES (round(dbms_random.value(10000, 99999)), newCantidad, newTotal, newEmpleadoId, newProveedorId, newProductoId);
+INSERT INTO ORDEN_PEDIDO (ID, CANTIDAD, EMPLEADO_ID, PROVEEDOR_ID, PRODUCTO)
+VALUES (round(dbms_random.value(10000, 99999)), newCantidad, newEmpleadoId, newProveedorId, newProducto);
 END;
 
 
@@ -91,14 +91,6 @@ INSERT INTO PRODUCTO (ID, CODIGO, NOMBRE, PRECIO, TIPO_PRODUCTO_ID, FAMILIA_ID, 
 VALUES (round(dbms_random.value(10000, 99999)), newCodigo, newNombre, newPrecio,newTipoProductoId, 
                                                newFamilia, newDescripcion, newStock, newStockCritico);
 END;
-
---Alteracion de la tabla producto para agregar DESCRIPCION STOCK y STOCK_CRITICO
-ALTER TABLE PRODUCTO ADD DESCRIPCION VARCHAR2(100);
-
-ALTER TABLE PRODUCTO ADD STOCK NUMBER(10);
-
-ALTER TABLE PRODUCTO ADD STOCK_CRITICO NUMBER(10);
-
 
 --PROCEDIMIENTO QUE LISTA LAS ORDENES DE PEDIDO 
 CREATE OR REPLACE PROCEDURE seleccionaOrdenPedido (registros out sys_refcursor)

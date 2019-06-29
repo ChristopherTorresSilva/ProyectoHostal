@@ -35,7 +35,7 @@ namespace Hostal.Negocio
             }
         }
 
-        public bool CreateOrdenPedido(int newCantidad, int newTotal, int newEmpleadoId, int newProveedorId, int newProductoId)
+        public bool CreateOrdenPedido(int newCantidad, int newEmpleadoId, int newProveedorId, string newProducto)
         {
             //System.Diagnostics.Debug.WriteLine(userN);
             DataTable dt = new DataTable();
@@ -54,10 +54,9 @@ namespace Hostal.Negocio
                 //OracleCommand comando = new OracleCommand("INSERTAR_USUARIO_EMPLEADO", OracleCon);
                 _OracleCommand.CommandType = CommandType.StoredProcedure;
                 _OracleCommand.Parameters.Add("newCantidad", OracleDbType.Int32).Value = newCantidad;
-                _OracleCommand.Parameters.Add("newTotal", OracleDbType.Int32).Value = newTotal;
                 _OracleCommand.Parameters.Add("newEmpleadoId", OracleDbType.Int32).Value = newEmpleadoId;
                 _OracleCommand.Parameters.Add("newProveedorId", OracleDbType.Int32).Value = newProveedorId;
-                _OracleCommand.Parameters.Add("newProductoId", OracleDbType.Int32).Value = newProductoId;
+                _OracleCommand.Parameters.Add("newProducto", OracleDbType.Varchar2).Value = newProducto;
 
 
 
