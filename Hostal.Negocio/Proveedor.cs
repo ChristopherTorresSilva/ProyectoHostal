@@ -83,6 +83,25 @@ namespace Hostal.Negocio
             }
         }
 
-       
+        public DataTable ListaProveedor()
+        {
+            //System.Diagnostics.Debug.WriteLine(userN);
+            DataTable dt = new DataTable();
+            try
+            {
+                OracleCon.Open();
+                OracleCommand _OracleCommand = new OracleCommand("SELECT * FROM PROVEEDOR", OracleCon);
+                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                _OracleDataAdapter.Fill(dt);
+                OracleCon.Close();
+                return dt;
+            }
+            catch (Exception)
+            {
+                return dt;
+            }
+        }
+
+
     }
 }
