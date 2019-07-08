@@ -215,11 +215,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="img\contacto.jpg" />
     <Content Include="img\fondo.jpg" />
-    <Content Include="img\habitacionDoble.jpg" />
+    <Content Include="img\formulario.jpg" />
     <Content Include="home.aspx" />
-    <Content Include="img\banner.jpg" />
+    <Content Include="img\habitacion.jpg" />
+    <Content Include="img\inicio.jpg" />
     <Content Include="img\minuta.jpg" />
+    <Content Include="img\pedido.jpg" />
+    <Content Include="img\recepcion.jpg" />
     <Content Include="ListadoOrdenPedido.aspx" />
     <Content Include="ListadoUsuarios.aspx" />
     <Content Include="RecepcionProducto.aspx" />

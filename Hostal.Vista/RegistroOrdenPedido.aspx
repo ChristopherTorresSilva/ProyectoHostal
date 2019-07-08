@@ -1,21 +1,23 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroOrdenPedido.aspx.cs" Inherits="Hostal.Vista.RegistroOrdenPedido" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <style type="text/css">
-        #x
-        {
-                    font-family:Arial;
-                    font-size: 15px;
-                    color: white;
+    <style type="text/css">
+        #x {
+            font-family: Arial;
+            font-size: 15px;
+            color: white;
         }
     </style>
     <div id="x" class="form-group col-lg-12">
-        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Registro Orden Pedido</h3>
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Image ID="Image1" runat="server" Height="113px" ImageUrl="~/img/pedido.jpg" Width="717px" />
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h3>Registro Orden Pedido</h3>
+
+        <div class="row">
+              <center>
+                 <img src="img/pedido.jpg"/>
+              </center>
+           </br>
+        </div>
+
         <div class="form-group">
             <%--EMPLEADO--%>
             <div class="form-horizontal">
@@ -50,18 +52,18 @@
             </div>
 
             <%--CANTIDAD--%>
-               <div class="form-horizontal">
-                    <div class="form-group">
-                        <asp:Label runat="server" CssClass="col-md-2 control-label">Cantidad</asp:Label>
-                        <div class="col-md-10">
-                             <asp:TextBox ID="inCantidad" type="number" CssClass="form-control " runat="server" OnTextChanged="inCantidad_SelectedIndexChanged" AutoPostBack="True" TextMode="Number" MaxLength="3" />
-                           <%--<input ID="inCantidad" type="number" AutoPostBack="True" OnSelectedIndexChanged="inCantidad_SelectedIndexChanged" CssClass="form-control " runat="server" min="1"/>--%>
-                        </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label">Cantidad</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox ID="inCantidad" type="number" CssClass="form-control " runat="server" OnTextChanged="inCantidad_SelectedIndexChanged" AutoPostBack="True" TextMode="Number" MaxLength="3" />
+                        <%--<input ID="inCantidad" type="number" AutoPostBack="True" OnSelectedIndexChanged="inCantidad_SelectedIndexChanged" CssClass="form-control " runat="server" min="1"/>--%>
                     </div>
                 </div>
+            </div>
 
             <%--CANTIDAD--%>
-<%--            <div class="form-horizontal">
+            <%--            <div class="form-horizontal">
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label">Cantidad</asp:Label>
                     <div class="col-md-10">
@@ -82,8 +84,8 @@
                 </div>
             </div>--%>
 
-             <%--MENSAJE ERROR--%>
-                <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>
+            <%--MENSAJE ERROR--%>
+            <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>
 
             <%--BOTON--%>
             <div class="col-md-offset-2 col-md-10">

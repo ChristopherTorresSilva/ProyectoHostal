@@ -18,7 +18,7 @@
     <div class="container">
         <div id="">
             <h3 id="x" >Hostal Doña Clarita</h3>
-            <img id="x" src="img/banner.jpg" />
+            <img id="x" src="img/inicio.jpg" />
         </div>
     </div>
 

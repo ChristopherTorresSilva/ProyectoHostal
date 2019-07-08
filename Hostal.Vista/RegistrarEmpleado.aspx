@@ -1,25 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistrarEmpleado.aspx.cs" Inherits="Hostal.Vista.RegistrarEmpleado" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <style type="text/css">
-        #x
-        {
-                    font-family:Arial;
-                    font-size: 15px;
-                    color: white;
+    <style type="text/css">
+        #x {
+            font-family: Arial;
+            font-size: 15px;
+            color: white;
         }
     </style>
-     <div id="x" class="row">
+    <div id="x" class="row">
         <div>
-            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Registro Empleado</h3>
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Image ID="Image1" runat="server" Height="113px" ImageUrl="~/img/formulario.jpg" Width="717px" />
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h3>Registro Empleado</h3>
+        <div class="row">
+              <center>
+                 <img src="img/formulario.jpg"/>
+              </center>
+           </br>
+        </div> 
             <section>
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="dropPerfil"  CssClass="col-md-2 control-label">Tipo de Usuario:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="dropPerfil" CssClass="col-md-2 control-label">Tipo de Usuario:</asp:Label>
                         <div class="col-md-10">
                             <asp:DropDownList ID="dropPerfil" runat="server" CssClass="form-control ">
                             </asp:DropDownList>
@@ -47,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="dropCargo"  CssClass="col-md-2 control-label">Cargo:</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="dropCargo" CssClass="col-md-2 control-label">Cargo:</asp:Label>
                         <div class="col-md-10">
                             <asp:DropDownList ID="dropCargo" runat="server" CssClass="form-control ">
                             </asp:DropDownList>
@@ -60,7 +61,7 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUsuario" CssClass="text-danger" ErrorMessage="El campo de nombre de usuario es obligatorio." />
                         </div>
                     </div>
-                   
+
                     <asp:Label ID="lblMsg" runat="server"></asp:Label>
                     <asp:Label runat="server" CssClass="text-danger" ID="lblErrorMsg"></asp:Label>
                     <div class="form-group">
