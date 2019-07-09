@@ -53,7 +53,7 @@ namespace Hostal.Vista
                 {
 
 
-                    PROVEEDOR empresa = new PROVEEDOR();
+                    Proveedor empresa = new Proveedor();
                     if (empresa.CreateProveedor(txtUsuario.Text, perfil,txtRut.Text,txtProveedor.Text,txtTel.Text,txtCorreo.Text, rubro))
                     {
 

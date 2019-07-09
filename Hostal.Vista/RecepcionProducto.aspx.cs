@@ -112,12 +112,12 @@ namespace Hostal.Vista
             int stock = int.Parse(txtStock.Text);
             int stockCritico = int.Parse(txtStockCritico.Text);
             string fecha = txtFecha.Text;
-            int proveedorId = int.Parse(dropOrden.SelectedValue);
+            int ordenId = int.Parse(dropOrden.SelectedValue);
 
             try
             {
                 Recepcion recepcion = new Recepcion();
-                if (recepcion.CreateRecepcionProducto(nombre, precio, tipoProductoId, familiaId, descripcion, stock, stockCritico, fecha, proveedorId))
+                if (recepcion.CreateRecepcionProducto(nombre, precio, tipoProductoId, familiaId, descripcion, stock, stockCritico, fecha, ordenId))
                 {
                     lblErrorMsg.Text = "Se han registrado los productos";
                 }
