@@ -45,29 +45,29 @@ END;
 
 
 --PROCEDIMIENTO QUE RESERVA UNA HABITACION
-create or replace PROCEDURE INSERTAR_RESERVA_HABITACION (huesped_id in NUMERIC , servicio_id in NUMERIC, archivo in VARCHAR2, 
+create or replace PROCEDURE INSERTAR_RESERVA_HABITACION (huesped_id in NUMERIC , archivo in VARCHAR2, 
 total in NUMERIC, habitacion_id in NUMERIC, tipo_servicio_id in NUMERIC)
 IS
 BEGIN
-Insert into ORDEN_COMPRA (ID,HUESPED_ID,SERVICIO_ID,ARCHIVO,TOTAL,HABITACION_ID,TIPO_SERVICIO_ID)
-values (round(dbms_random.value(10000,99999)) ,huesped_id,servicio_id,archivo,total,habitacion_id,tipo_servicio_id);
+Insert into ORDEN_COMPRA (ID,HUESPED_ID,ARCHIVO,TOTAL,HABITACION_ID,TIPO_SERVICIO_ID)
+values (round(dbms_random.value(10000,99999)) ,huesped_id,archivo,total,habitacion_id,tipo_servicio_id);
 END;
 
 --PROCEDIMIENTO QUE RESERVA UNA HABITACION Y CREA EL HUESPED SI ES NUEVO
 CREATE OR REPLACE PROCEDURE RESERVA_HABITACION_HUESPED (nombre in VARCHAR, apellido in VARCHAR, rut in VARCHAR, empresa_id in NUMERIC,
-habitacion_id in NUMERIC, servicio_id in NUMERIC, archivo in VARCHAR, total in NUMERIC, tipo_servicio_id in NUMERIC)
+habitacion_id in NUMERIC, archivo in VARCHAR, total in NUMERIC, tipo_servicio_id in NUMERIC)
 IS
 huesped_id USUARIO.ID%TYPE;
 BEGIN
 INSERT INTO HUESPED (ID, NOMBRE, APELLIDO, RUT, EMPRESA_ID, HABITACION_ID) VALUES
 (round(dbms_random.value(10000,99999)), nombre, apellido, rut, empresa_id, habitacion_id)
 RETURNING ID INTO huesped_id;
-INSERT INTO ORDEN_COMPRA (ID,HUESPED_ID,SERVICIO_ID,ARCHIVO,TOTAL,HABITACION_ID,TIPO_SERVICIO_ID)
-values (round(dbms_random.value(10000,99999)), huesped_id, servicio_id, archivo, total, habitacion_id, tipo_servicio_id);
+INSERT INTO ORDEN_COMPRA (ID,HUESPED_ID,ARCHIVO,TOTAL,HABITACION_ID,TIPO_SERVICIO_ID)
+values (round(dbms_random.value(10000,99999)), huesped_id, archivo, total, habitacion_id, tipo_servicio_id);
 END;
 
 --PROCEDIMIENTO QUE CREA INSERTA UN PLATO
-CREATE OR REPLACE PROCEDURE INSERTAR_PLATO (newNombre in VAECHAR2, newTipoServicio in NUMERIC)
+CREATE OR REPLACE PROCEDURE INSERTAR_PLATO (newNombre in VARCHAR2, newTipoServicio in NUMERIC)
 IS BEGIN
 INSERT INTO PLATOS (ID, NOMBRE, TIPO_SERVICIO_ID)
 VALUES (round(dbms_random.value(10000, 99999)), newNombre, newTipoServicio);
