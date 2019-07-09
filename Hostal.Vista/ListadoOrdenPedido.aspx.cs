@@ -13,20 +13,36 @@ namespace Hostal.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["perfil"] != null && Session["perfil"].ToString() == "Root")
+            if (Session["perfil"] != null && Session["perfil"].ToString() == "Administrador")
             {
                 if (!IsPostBack)
                 {
-                    MtInicio();
+                    init();
                 }
-            }else
+            }
+            if (Session["perfil"] != null && Session["perfil"].ToString() == "Empleado")
+            {
+                if (!IsPostBack)
+                {
+                    init();
+                }
+            }
+            if (Session["perfil"] != null && Session["perfil"].ToString() == "Proveedor")
+            {
+                if (!IsPostBack)
+                {
+                    init();
+                }
+            }
+            else
             {
                 Response.Redirect("~/Default.aspx");
             }
-           
+
+
         }
 
-        private void MtInicio()
+        private void init()
         {
             try
             {

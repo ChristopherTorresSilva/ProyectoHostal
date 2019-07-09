@@ -16,10 +16,27 @@ namespace Hostal.Vista
         protected void Page_Load(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(IsPostBack);
-            if (!IsPostBack)
-            {
-                init();
-            }
+
+                if (Session["perfil"] != null && Session["perfil"].ToString() == "Administrador")
+                {
+                    if (!IsPostBack)
+                    {
+                        init();
+                    }
+                }
+                if (Session["perfil"] != null && Session["perfil"].ToString() == "Usuario Empresa")
+                {
+                    if (!IsPostBack)
+                    {
+                        init();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
+              
 
         }
 
@@ -150,8 +167,7 @@ namespace Hostal.Vista
                         }
                     }
                 }
-                
-                 
+     
                 //lblErrorMsg.Text = "Reserva realizada. ";
             }
             catch (Exception ex)
@@ -160,6 +176,8 @@ namespace Hostal.Vista
 
 
             }
+
+           
 
         }
 
@@ -198,7 +216,7 @@ namespace Hostal.Vista
                 dropHabitacion.Enabled = true;
                 dropServicio.Enabled = true;
                 dropCama.Enabled = true;
-                
+               
             }
             else
             {
@@ -222,7 +240,6 @@ namespace Hostal.Vista
                 txtRut.Enabled = false;
                 dropEmpresa.Enabled = false;
             }
-           
         }
     }
 }
