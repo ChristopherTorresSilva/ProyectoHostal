@@ -17,26 +17,18 @@ namespace Hostal.Vista
         {
             System.Diagnostics.Debug.WriteLine(IsPostBack);
 
-                if (Session["perfil"] != null && Session["perfil"].ToString() == "Administrador")
+            if (Session["perfil"] != null && Session["perfil"].ToString() == "Administrador" || Session["perfil"] != null && Session["perfil"].ToString() == "Usuario Empresa")
+            {
+                if (!IsPostBack)
                 {
-                    if (!IsPostBack)
-                    {
-                        init();
-                    }
+                    init();
                 }
-                if (Session["perfil"] != null && Session["perfil"].ToString() == "Usuario Empresa")
-                {
-                    if (!IsPostBack)
-                    {
-                        init();
-                    }
-                }
-                else
-                {
-                    Response.Redirect("~/Default.aspx");
-                }
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
 
-              
 
         }
 
