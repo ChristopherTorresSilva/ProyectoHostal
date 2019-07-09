@@ -48,7 +48,7 @@ namespace Hostal.Servicio
             Boolean _resp = false;
             try
             {
-                PROVEEDOR proveedor = new PROVEEDOR();
+                Proveedor proveedor = new Proveedor();
                 _resp = proveedor.CreateProveedor(userN, perfil, rut, nombre, telefono, correo, rubro);
                 return _resp;
             }
@@ -227,7 +227,7 @@ namespace Hostal.Servicio
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             try
             {
-                PROVEEDOR proveedores = new PROVEEDOR();
+                Proveedor proveedores = new Proveedor();
                 dt = proveedores.ListaProveedor();
                 System.Diagnostics.Debug.WriteLine(dt);
                 string JSONString = string.Empty;
@@ -263,16 +263,17 @@ namespace Hostal.Servicio
         }
 
         [WebMethod]
-        public bool CreateRecepcionProducto(string productoId, string newNombre, int newPrecio, int newTipoProductoId, int newFamilia, string newDescripcion, int newStock, int newStockCritico, string
-            fecha)
+        public bool CreateRecepcionProducto(string newNombre, int newPrecio, int newTipoProductoId, 
+            int newFamilia, string newDescripcion, int newStock, int newStockCritico, string fecha, 
+            int ordenId)
         {
             Boolean _resp = false;
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             try
             {
                 Recepcion recepcion = new Recepcion();
-                _resp = recepcion.CreateRecepcionProducto(productoId, newNombre, newPrecio, newTipoProductoId,
-                    newFamilia, newDescripcion, newStock, newStockCritico, fecha);
+                _resp = recepcion.CreateRecepcionProducto(newNombre, newPrecio, newTipoProductoId,
+                    newFamilia, newDescripcion, newStock, newStockCritico, fecha, ordenId);
                 return _resp;
             }
             catch (Exception ex)
@@ -283,19 +284,26 @@ namespace Hostal.Servicio
         }
 
         [WebMethod]
-        public bool CreateOrdenPedido(int newCantidad, int newTotal, int newEmpleadoId, int newProveedorId, int newProductoId)
+        public bool CreateOrdenPedido(int newCantidad, int newEmpleadoId, int newProveedorId, string newProducto)
         {
+            System.Diagnostics.Debug.WriteLine(newCantidad);
+            System.Diagnostics.Debug.WriteLine(newEmpleadoId);
+            System.Diagnostics.Debug.WriteLine(newProveedorId);
+            System.Diagnostics.Debug.WriteLine(newProducto);
             Boolean _resp = false;
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
             try
             {
                 OrdenPedido orden = new OrdenPedido();
-                _resp = orden.CreateOrdenPedido(newCantidad, newTotal, newEmpleadoId, newProveedorId, newProductoId);
+                _resp = orden.CreateOrdenPedido(newCantidad, newEmpleadoId, newProveedorId, newProducto);
+                System.Diagnostics.Debug.WriteLine("Bien");
+                System.Diagnostics.Debug.WriteLine(_resp);
                 return _resp;
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine("Mal");
+                System.Diagnostics.Debug.WriteLine(ex);
                 return _resp;
             }
         }
@@ -329,6 +337,48 @@ namespace Hostal.Servicio
             {
                 TipoProducto tipo = new TipoProducto();
                 dt = tipo.ListaTipoProducto();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaOrdenPedido()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                OrdenPedido orden = new OrdenPedido();
+                dt = orden.ListaOrdenPedido();
+                System.Diagnostics.Debug.WriteLine(dt);
+                string JSONString = string.Empty;
+                JSONString = JsonConvert.SerializeObject(dt);
+                return JSONString;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+                return "Vacío";
+            }
+        }
+
+        [WebMethod]
+        public string ListaEmpleados()
+        {
+            DataTable dt = null;
+            JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
+            try
+            {
+                EMPLEADO empleado = new EMPLEADO();
+                dt = empleado.ListaEmpleados();
                 System.Diagnostics.Debug.WriteLine(dt);
                 string JSONString = string.Empty;
                 JSONString = JsonConvert.SerializeObject(dt);
