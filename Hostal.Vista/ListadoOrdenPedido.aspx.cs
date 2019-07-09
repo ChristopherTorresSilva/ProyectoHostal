@@ -13,10 +13,17 @@ namespace Hostal.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["perfil"] != null && Session["perfil"].ToString() == "Root")
             {
-                MtInicio();
+                if (!IsPostBack)
+                {
+                    MtInicio();
+                }
+            }else
+            {
+                Response.Redirect("~/Default.aspx");
             }
+           
         }
 
         private void MtInicio()

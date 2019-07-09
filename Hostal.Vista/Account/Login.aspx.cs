@@ -7,6 +7,7 @@ using Owin;
 using Hostal.Vista.Models;
 using Oracle.DataAccess.Client;
 using Hostal.Negocio;
+using System.Data;
 
 namespace Hostal.Vista.Account
 {
@@ -21,9 +22,44 @@ namespace Hostal.Vista.Account
             try
             {
                 USUARIO usuario = new USUARIO();
-                if (usuario.login(txtUsuario.Text, txtPass.Text))
+                Perfiles perfil = new Perfiles();
+                DataTable perfiles = perfil.ListaPerfiles();
+                DataTable usuarioLog = usuario.login(txtUsuario.Text, txtPass.Text);
+
+                if (usuarioLog.Rows.Count > 0) 
                 {
-                    Session["username"] = txtUsuario.Text.Trim();
+                    foreach (DataRow row in usuarioLog.Rows)
+                    {
+                        foreach (DataColumn column in usuarioLog.Columns)
+                        {
+                            //System.Diagnostics.Debug.WriteLine(column);
+                            if (column.ToString() == "PERFIL_ID")
+                            {
+                                foreach (DataRow _perfil in perfiles.Rows)
+                                {
+                                    foreach (DataColumn _perfilColumn in perfiles.Columns)
+                                    {
+                                        if (_perfilColumn.ToString() == "ID")
+                                        {
+                                            if (_perfil[_perfilColumn].ToString() == row[column].ToString())
+                                            {
+                                                Session["perfil"] = _perfil["NOMBRE"].ToString();
+                                                //System.Diagnostics.Debug.WriteLine(row[column].ToString());
+                                            }
+                                        }
+                                            
+                                    }
+                                }
+                                    
+                                //System.Diagnostics.Debug.WriteLine(row[column].ToString());
+                            }else if (column.ToString() == "USERNAME")
+                            {
+                                Session["username"] = txtUsuario.Text.Trim();
+                            }
+
+                        }
+                    }
+                    //Session["username"] = txtUsuario.Text.Trim();
                     Response.Redirect("~/Default.aspx");
                 }
                 else

@@ -10,6 +10,7 @@ namespace Hostal.Negocio
 {
     public class USUARIO
     {
+        DataTable dt = new DataTable();
         OracleConnection OracleCon = new OracleConnection();
         public USUARIO()
         {
@@ -75,7 +76,7 @@ namespace Hostal.Negocio
             }
         }
 
-        public bool login(string user, string pass)
+        public DataTable login(string user, string pass)
         {
             OracleCon.Open();
             OracleCommand _OracleCommand = new OracleCommand("SELECT * FROM USUARIO WHERE USERNAME = :usuario and PASSWORD = :password", OracleCon);
@@ -85,15 +86,17 @@ namespace Hostal.Negocio
 
             OracleDataReader lector = _OracleCommand.ExecuteReader();
             var login = lector.Read();
-            
+            OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+            _OracleDataAdapter.Fill(dt);
+
             OracleCon.Close();
             if (login)
             {
-                return true;
+                return dt;
             }
             else
             {
-                return false;
+                return dt;
             }
 
         }
