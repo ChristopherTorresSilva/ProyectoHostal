@@ -8,10 +8,10 @@ using System.Data;
 
 namespace Hostal.Negocio
 {
-    public class PROVEEDOR
+    public class Proveedor
     {
         OracleConnection OracleCon = new OracleConnection();
-        public PROVEEDOR()
+        public Proveedor()
         {
             try
             {
@@ -25,7 +25,7 @@ namespace Hostal.Negocio
             }
 
         }
-        public PROVEEDOR(string sqlcon)
+        public Proveedor(string sqlcon)
         {
             try
             {

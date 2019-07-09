@@ -86,5 +86,26 @@ namespace Hostal.Negocio
                 return false;
             }
         }
+
+        public DataTable ListaEmpleados()
+        {
+            //System.Diagnostics.Debug.WriteLine(userN);
+            DataTable dt = new DataTable();
+            try
+            {
+                OracleCon.Open();
+                OracleCommand _OracleCommand = new OracleCommand("SELECT * FROM EMPLEADO", OracleCon);
+                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                //System.Diagnostics.Debug.WriteLine(topTitle + " " + subTitle);
+                _OracleDataAdapter.Fill(dt);
+                OracleCon.Close();
+                return dt;
+            }
+            catch (Exception)
+            {
+                //System.Diagnostics.Debug.WriteLine(userN);
+                return dt;
+            }
+        }
     }
 }
