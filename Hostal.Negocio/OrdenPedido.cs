@@ -78,33 +78,53 @@ namespace Hostal.Negocio
             }
         }
 
-        public DataTable ListaOrdenPedido(string id)
+        public DataTable ListaOrdenPedido(string id = null)
         {
             DataTable dt = new DataTable();
             try
             {
                 OracleCon.Open();
-                OracleCommand _OracleCommand = new OracleCommand("SELECT ID FROM PROVEEDOR WHERE USUARIO_ID = :id", OracleCon);
-                _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(id);
-                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
-                _OracleDataAdapter.Fill(dt);
-                foreach (DataRow _proveedor in dt.Rows)
+                if (id != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(_proveedor);
-                    foreach (DataColumn column in dt.Columns)
+
+
+                    
+                    OracleCommand _OracleCommand = new OracleCommand("SELECT ID FROM PROVEEDOR WHERE USUARIO_ID = :id", OracleCon);
+                    _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(id);
+                    OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                    _OracleDataAdapter.Fill(dt);
+                    foreach (DataRow _proveedor in dt.Rows)
                     {
-                        System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
-                        if (column.ToString() == "ID")
+                        System.Diagnostics.Debug.WriteLine(_proveedor);
+                        foreach (DataColumn column in dt.Columns)
                         {
-                            _OracleCommand = new OracleCommand("SELECT * FROM ORDEN_PEDIDO WHERE PROVEEDOR_ID = :id", OracleCon);
-                            _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(_proveedor["ID"].ToString());
                             System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
-                            _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
-                            _OracleDataAdapter.Fill(dt);
+                            if (column.ToString() == "ID")
+                            {
+                                _OracleCommand = new OracleCommand("SELECT * FROM ORDEN_PEDIDO WHERE PROVEEDOR_ID = :id", OracleCon);
+                                _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(_proveedor["ID"].ToString());
+                                System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
+                                _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                                _OracleDataAdapter.Fill(dt);
+                            }
                         }
                     }
-                }
-                OracleCon.Close();
+                    
+                   
+                }else
+                {
+                    OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter();
+                    OracleCommand _OracleCommand = new OracleCommand();
+
+                    _OracleCommand.CommandText = "seleccionaOrdenPedido";
+                    _OracleCommand.Connection = OracleCon;
+                    _OracleCommand.CommandType = CommandType.StoredProcedure;
+
+                    _OracleCommand.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                    _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                    _OracleDataAdapter.Fill(dt);
+                } 
+                    OracleCon.Close();
                 return dt;
             }
             catch (Exception ex)
