@@ -101,17 +101,20 @@ namespace Hostal.Negocio
                             System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
                             if (column.ToString() == "ID")
                             {
-                                _OracleCommand = new OracleCommand("SELECT * FROM ORDEN_PEDIDO WHERE PROVEEDOR_ID = :id", OracleCon);
-                                _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(_proveedor["ID"].ToString());
+                                _OracleCommand = new OracleCommand("SELECT * FROM ORDEN_PEDIDO WHERE PROVEEDOR_ID = :idProv", OracleCon);
+                                _OracleCommand.Parameters.Add(":idProv", OracleDbType.Int32).Value = int.Parse(_proveedor["ID"].ToString());
                                 System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
                                 _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                                dt = new DataTable();
                                 _OracleDataAdapter.Fill(dt);
                             }
                         }
                     }
-                    
-                   
-                }else
+
+                    OracleCon.Close();
+                    return dt;
+                }
+                else
                 {
                     OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter();
                     OracleCommand _OracleCommand = new OracleCommand();
@@ -123,9 +126,11 @@ namespace Hostal.Negocio
                     _OracleCommand.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                     _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
                     _OracleDataAdapter.Fill(dt);
-                } 
+
                     OracleCon.Close();
-                return dt;
+                    return dt;
+                } 
+                
             }
             catch (Exception ex)
             {
