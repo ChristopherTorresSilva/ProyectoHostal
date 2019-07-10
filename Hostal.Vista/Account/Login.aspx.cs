@@ -55,6 +55,9 @@ namespace Hostal.Vista.Account
                             }else if (column.ToString() == "USERNAME")
                             {
                                 Session["username"] = txtUsuario.Text.Trim();
+                            } else if (column.ToString() == "ID")
+                            {
+                                Session["ID"] = row["ID"].ToString();
                             }
 
                         }

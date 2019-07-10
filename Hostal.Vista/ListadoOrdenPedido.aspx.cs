@@ -47,8 +47,7 @@ namespace Hostal.Vista
             {
                 OrdenPedido ordenPedido = new OrdenPedido();
                 DataTable dt = new DataTable();
-
-                dt = ordenPedido.ListaOrdenPedido();
+                dt = ordenPedido.ListaOrdenPedido(Session["ID"].ToString());
 
                 gridUser.DataSource = dt;
                 gridUser.DataBind();
@@ -57,6 +56,7 @@ namespace Hostal.Vista
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex);
             }
         }
 

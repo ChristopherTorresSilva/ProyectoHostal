@@ -78,33 +78,37 @@ namespace Hostal.Negocio
             }
         }
 
-        public DataTable ListaOrdenPedido()
+        public DataTable ListaOrdenPedido(string id)
         {
-
-            //System.Diagnostics.Debug.WriteLine(userN);
             DataTable dt = new DataTable();
             try
             {
-
-                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter();
-                OracleCommand _OracleCommand = new OracleCommand();
-
-                _OracleCommand.CommandText = "seleccionaOrdenPedido";
-                _OracleCommand.Connection = OracleCon;
-                _OracleCommand.CommandType = CommandType.StoredProcedure;
-
-                _OracleCommand.Parameters.Add("registros", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
                 OracleCon.Open();
-                _OracleDataAdapter.SelectCommand = _OracleCommand;
+                OracleCommand _OracleCommand = new OracleCommand("SELECT ID FROM PROVEEDOR WHERE USUARIO_ID = :id", OracleCon);
+                _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(id);
+                OracleDataAdapter _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
                 _OracleDataAdapter.Fill(dt);
+                foreach (DataRow _proveedor in dt.Rows)
+                {
+                    System.Diagnostics.Debug.WriteLine(_proveedor);
+                    foreach (DataColumn column in dt.Columns)
+                    {
+                        System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
+                        if (column.ToString() == "ID")
+                        {
+                            _OracleCommand = new OracleCommand("SELECT * FROM ORDEN_PEDIDO WHERE PROVEEDOR_ID = :id", OracleCon);
+                            _OracleCommand.Parameters.Add(":id", OracleDbType.Int32).Value = int.Parse(_proveedor["ID"].ToString());
+                            System.Diagnostics.Debug.WriteLine(_proveedor["ID"].ToString());
+                            _OracleDataAdapter = new OracleDataAdapter(_OracleCommand);
+                            _OracleDataAdapter.Fill(dt);
+                        }
+                    }
+                }
                 OracleCon.Close();
-
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //System.Diagnostics.Debug.WriteLine(userN);
                 return dt;
             }
         }
