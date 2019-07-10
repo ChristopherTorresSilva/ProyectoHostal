@@ -28,17 +28,24 @@ namespace Hostal.Servicio
         [WebMethod]
         public bool login(string user, string pass)
         {
-            Boolean _resp = false;
+            DataTable _resp;
             try
             {
                 USUARIO usuario = new USUARIO();
                 _resp = usuario.login(user, pass);
-                return _resp;
+                if (_resp.Rows.Count > 0)
+                {
+                    return true;
+                }else
+                {
+                    return false;
+                }
+                
             }
             catch (Exception)
             {
 
-                return _resp;
+                return false;
             }
         }
 
