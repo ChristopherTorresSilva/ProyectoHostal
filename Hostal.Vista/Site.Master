@@ -107,39 +107,56 @@
                         <li><a runat="server" href="~/About">Acerca de</a></li>
                         <li><a runat="server" href="~/Contact">Contacto</a></li>
 
-                        <% if (Session["Username"] != null)
-                            { %>
-                        <li><a href="#">Registro</a>
+                         
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado")
+                           { %>
+                                <li><a href="#">Registro</a>
                             <ul>
                                 <li><a runat="server" href="~/RegistrarEmpresa">Registrar Empresa</a></li>
                                 <li><a runat="server" href="~/RegistrarEmpleado">Registrar Empleado</a></li>
                                 <li><a runat="server" href="~/RegistrarProveedor">Registrar Proveedor</a></li>
-                                 <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
                             </ul>
-                        </li>
+                        <% } %>
 
-                         <li><a href="#">Comedor</a>
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Usuario Empresa")
+                           { %>
+                            <ul>
+                                <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
+                            </ul>
+                                </li>
+                        <% } %>
+
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Usuario Empresa")
+                           { %>
+                                <li><a href="#">Comedor</a>
                             <ul>
                                 <li><a runat="server" href="~/RegistrarPlatos">Registro de Platos</a></li>
                             </ul>
-                        </li>
+                                </li>
+                        <% } %>
+                        
 
-                        <li><a href="#">Ordenes</a>
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Proveedor")
+                           { %>
+                                <li><a href="#">Ordenes</a>
                             <ul>
                                 <li><a runat="server" href="~/RegistroOrdenPedido">Registro Orden de Pedido</a></li>
                             </ul>
-                        </li>
+                                </li>
+                        <% } %>
+                                
 
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado")
+                           { %>
                         <li><a href="#">Recepción</a>
                             <ul>
                                 <li><a runat="server" href="~/RecepcionProducto">Recepción Producto</a></li>
                             </ul>
-                        </li>
+                                </li>
                         <% } %>
+                                
                     </ul>
 
-
-                  
                         <% if (Session["Username"] != null)
                         { %>
                         <ul>
