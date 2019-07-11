@@ -118,13 +118,7 @@
                             </ul>
                         <% } %>
 
-                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Usuario Empresa")
-                           { %>
-                            <ul>
-                                <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
-                            </ul>
-                                </li>
-                        <% } %>
+                        
 
                         <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Usuario Empresa")
                            { %>
@@ -154,7 +148,16 @@
                             </ul>
                                 </li>
                         <% } %>
-                                
+
+                        <% if (Session["Username"] != null && Session["perfil"].ToString() == "Administrador" || Session["Username"] != null && Session["perfil"].ToString() == "Empleado" || Session["Username"] != null && Session["perfil"].ToString() == "Usuario Empresa")
+                           { %>
+                             <li><a href="#">Reserva</a>
+                            <ul>
+                                <li><a runat="server" href="~/RegistrarHabitacion">Reservar Habitación</a></li>
+                            </ul>
+                                </li>
+                        <% } %>
+    
                     </ul>
 
                         <% if (Session["Username"] != null)
